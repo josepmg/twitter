@@ -40,9 +40,9 @@ public class ListaUsuariosServlet extends HttpServlet {
             System.out.println(u.getIdUsuario() + ": " + u.getNomeCompleto());
         }
         // Adiciona a lista de usuário 
-        request.setAttribute("usuarios", usuariosList);
+        request.setAttribute("usarios", usuariosList);
         // Troca de tela pelo Dispatcher
-        request.getRequestDispatcher("/listaUsuariosJSP.jsp").forward(request, response);
+        getServletConfig().getServletContext().getRequestDispatcher("/listaUsuariosJSP.jsp").forward(request, response);
     }
 
 }

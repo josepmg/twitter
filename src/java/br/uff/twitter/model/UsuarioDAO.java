@@ -83,4 +83,39 @@ public class UsuarioDAO {
             throw new RuntimeException(e);
         }  
     }
+    
+    public Usuario busca(int id){
+        try {
+            // Cria o statment que contém a Query de consulta
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ?");
+            stmt.setString(1, String.valueOf(id));
+            // Cria uma varíavel para receber o resultado da Query
+            ResultSet rs = stmt.executeQuery();
+            
+            // Cria usuário encontrado
+            Usuario usuario = null;
+            // Verifica se houve algum retorno
+            if (rs.next()){
+                usuario = new Usuario(
+                        rs.getInt("idUsuario"), 
+                        rs.getString("nomeCompleto"), 
+                        rs.getLong("dataNascimento"), 
+                        rs.getString("apelido"), 
+                        rs.getString("email"), 
+                        rs.getString("senha"));
+            }
+            else{
+                System.out.println("Não há registros para id " + id);
+            }
+            // Encerra o ResultSet
+            rs.close();
+            // Encerra o Statment
+            stmt.close();
+            System.out.println("Recuperado!");
+            // Retorna a lista de Usuários do BD
+            return usuario;
+        } catch (SQLException  e) {
+            throw new RuntimeException(e);
+        } 
+    }
 }
