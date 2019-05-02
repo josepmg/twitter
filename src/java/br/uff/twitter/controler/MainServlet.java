@@ -1,7 +1,6 @@
 package br.uff.twitter.controler;
 
 import br.uff.twitter.model.FabricaConexoes;
-import br.uff.twitter.model.FakeBD;
 import br.uff.twitter.model.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;

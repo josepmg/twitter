@@ -6,7 +6,6 @@
 package br.uff.twitter.controler;
 
 import br.uff.twitter.model.FabricaConexoes;
-import br.uff.twitter.model.FakeBD;
 import br.uff.twitter.model.Usuario;
 import br.uff.twitter.model.UsuarioDAO;
 import java.io.IOException;
@@ -32,20 +31,21 @@ public class NovoUsuarioServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        // Cria um novo usuário com os dados dos Form
         Usuario usuario = new Usuario(request.getParameter("nomeCompleto"),
                 Long.parseLong(request.getParameter("dataNascimento")),
                 request.getParameter("apelido"), 
                 request.getParameter("email"), 
                 request.getParameter("senha"));
         
+        // Cria um objeto de acesso ao BD
         UsuarioDAO usuarioDAO = new UsuarioDAO();
+        // Chama método para cadastrar usuário
         usuarioDAO.adiciona(usuario);
+        
         try {
             usuarioDAO.fechaConexao();
-            
-            
-//        request.setAttribute("usuarios", fakeBD.getListaUsuarios());
-//        request.getRequestDispatcher("/listaUsuariosJSP.jsp").forward(request, response);
+            request.getRequestDispatcher("/listaUsuariosJSP.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(NovoUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
