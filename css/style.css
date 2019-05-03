@@ -1,0 +1,132 @@
+*, html, body, h1, p, div, section {
+    margin: 0;
+    padding:0; 
+}
+
+body {
+    background: #FA7268;
+    background-image: url("../images/nuvem.png");
+    background-size: 10%;
+    background-position-y: -12px;
+    background-position-x: 35px;
+}
+
+
+
+#principal {
+    max-width: 960px;
+    padding: 0px;
+    margin: auto;
+}
+
+#principal .image-logo{
+    max-width: 106px;
+    margin-left: 45%;
+    margin-top: 10%;
+    background: #84DDFF;
+    -webkit-border-radius: 100px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius: 100px;
+    -moz-border-radius-topleft: 0;
+    border-radius: 100px;
+    border-top-left-radius: 0;
+}
+
+#principal .image-logo img{
+    margin: 0 auto;
+    width: 106px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+    -webkit-border-radius: 100px;
+-webkit-border-top-left-radius: 0;
+-moz-border-radius: 100px;
+-moz-border-radius-topleft: 0;
+border-radius: 100px;
+border-top-left-radius: 0;
+}
+
+#principal .form{
+    border-radius: 6px;
+    max-width: 301px;
+    max-height: 343px;
+    margin: 0 auto;
+    margin-top: -50px;
+    padding: 0px 20px;
+    padding-top: 70px;
+    padding-bottom: 45px;
+    background: #FFFFFF;
+    border: 1px solid rgba(112, 112, 112, 0.16);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+}
+
+#principal .form input{
+    width: 223px;
+    height: 39px;
+    display: block;
+    padding-left: 30px;
+    margin: 6px auto;
+    font-size: 16px;
+    color: #545454;
+    border: 1px solid rgba(112, 112, 112, 0.21);
+}
+
+::-webkit-input-placeholder {
+    color: rgba(112, 112, 112, 0.54);
+    font-family: georgia;
+    font-style: italic;
+    font-size: 16px;
+ }
+
+ #user, #password{
+    background-repeat:no-repeat;
+    background-size: 20px;
+    background-position-y: 9px;
+    background-position-x: 4px;
+ }
+ 
+#user{
+     background-image: url("../images/login.png");
+ 
+ }
+
+#password{
+    background-image: url("../images/senha.png");
+
+}
+
+#principal .form button{
+    background: #84DDFF;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+    border: 0px;
+    padding: 12px 32px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    /*font-weight: bold;*/
+    font-family: Roboto;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.35);
+    margin: 20px 30%;
+}
+
+#principal .form .forgotPass{
+    text-align: right;
+    margin-right: 34px;
+    color: #ABABAB;
+    display: block;
+    text-decoration: none;
+    font-family: arial;
+    font-size: 11px;
+}
+
+#principal .form  .register{
+    color: #707070;
+    margin-top:0px;
+    font-family: arial;
+    font-size: 11px;
+    text-align: center;
+}
+
+#principal .form .register a{
+    color: #707070;
+    text-decoration: none;
+    display: inline;
+}
