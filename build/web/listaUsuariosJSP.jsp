@@ -20,7 +20,9 @@
         <ul>
             <c:if test="${listaUsuarios != null}" >
                 <c:forEach var="u" items="${listaUsuarios}">
-                    <li> ${u.nomeCompleto} </li>
+                    <li> <h3>${u.nomeCompleto}</h3> <form action="/twitter/UsuarioServlet?operacao=3" method="post"> <input type="hidden" name="id" value="${u.idUsuario}"/> <input type="submit" value="Deletar"> </form>
+                        <form action="/twitter/UsuarioServlet?operacao=4" method="post"> <input type="hidden" name="id" value="${u.idUsuario}"/> <input type="submit" value="Alterar dados"> </form>
+                    </li>
                 </c:forEach>
             </c:if>
         </ul>

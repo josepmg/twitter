@@ -6,7 +6,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="/twitter/novoUsuario" method="post">
+        <form action="/twitter/UsuarioServlet?operacao=0" method="post">
             Nome completo: <input type="text" name="nomeCompleto" placeholder="Nome Completo"/> <br/>
             Data de nascimento: <input type="number" name="dataNascimento"/> <br/>
             Apelido: <input type="text" name="apelido" placeholder="apelido"/> <br/>

@@ -5,7 +5,6 @@
  */
 package br.uff.twitter.model;
 
-import br.uff.twitter.controler.NovoUsuarioServlet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -47,7 +46,6 @@ public class UsuarioDAO {
 
             stmt.execute();
             stmt.close();
-            System.out.println("Gravado!");
         } catch (SQLException  e) {
             throw new RuntimeException(e);
         }      
@@ -76,7 +74,6 @@ public class UsuarioDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
-            System.out.println("Recuperado!");
             // Retorna a lista de Usuários do BD
             return usuariosList;
         } catch (SQLException  e) {
@@ -111,11 +108,45 @@ public class UsuarioDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
-            System.out.println("Recuperado!");
             // Retorna a lista de Usuários do BD
             return usuario;
         } catch (SQLException  e) {
             throw new RuntimeException(e);
         } 
+    }
+    
+    public void altera(Usuario u){
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("UPDATE usuario "
+                    + "set nomeCompleto = ?, "
+                    + "dataNascimento = ?, "
+                    + "apelido = ?, "
+                    + "email = ?, "
+                    + "senha = ? "
+                    + "WHERE idUsuario = ?");
+            stmt.setString(1, u.getNomeCompleto());
+            stmt.setString(2, String.valueOf(u.getDataNascimento()));
+            stmt.setString(3, u.getApelido());
+            stmt.setString(4, u.getEmail());
+            stmt.setString(5, u.getSenha());
+            stmt.setString(6, String.valueOf(u.getIdUsuario()));
+            System.out.println(stmt.toString());
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void remove(int id){
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("DELETE FROM usuario WHERE idUsuario = ?");
+            stmt.setInt(1, id);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

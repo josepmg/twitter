@@ -14,6 +14,6 @@
     <body>
         <h1>Menu Principal</h1>
         <a href="./novoUsuarioForm.jsp">Cadastrar novo usuário</a>
-        <a href="/twitter/ListaUsuarios">Listar usuários cadastrados</a>
+        <a href="/twitter/UsuarioServlet?operacao=1">Listar usuários cadastrados</a>
     </body>
 </html>

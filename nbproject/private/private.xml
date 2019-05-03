@@ -6,9 +6,11 @@
             <file>file:/D:/NetBeansProjects/twitter/src/java/br/uff/twitter/model/UsuarioDAO.java</file>
             <file>file:/D:/NetBeansProjects/twitter/src/java/br/uff/twitter/controler/NovoUsuarioServlet.java</file>
             <file>file:/D:/NetBeansProjects/twitter/web/homeJSP.jsp</file>
+            <file>file:/D:/NetBeansProjects/twitter/src/java/br/uff/twitter/controler/ListaUsuariosServlet.java</file>
             <file>file:/D:/NetBeansProjects/twitter/src/java/br/uff/twitter/controler/MainServlet.java</file>
-            <file>file:/D:/NetBeansProjects/twitter/web/listaUsuariosJSP.jsp</file>
             <file>file:/D:/NetBeansProjects/twitter/src/java/br/uff/twitter/model/FabricaConexoes.java</file>
+            <file>file:/D:/NetBeansProjects/twitter/web/listaUsuariosJSP.jsp</file>
+            <file>file:/D:/NetBeansProjects/twitter/web/novoUsuarioForm.jsp</file>
         </group>
     </open-files>
 </project-private>
