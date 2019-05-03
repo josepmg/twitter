@@ -5,10 +5,10 @@
 
 body {
     background: #FA7268;
-    background-image: url("../images/nuvem.png");
+    /*background-image: url("../images/nuvem.png");
     background-size: 10%;
     background-position-y: -12px;
-    background-position-x: 35px;
+    background-position-x: 35px;*/
 }
 
 
@@ -62,7 +62,7 @@ border-top-left-radius: 0;
     width: 223px;
     height: 39px;
     display: block;
-    padding-left: 30px;
+    padding-left: 34px;
     margin: 6px auto;
     font-size: 16px;
     color: #545454;
@@ -71,16 +71,15 @@ border-top-left-radius: 0;
 
 ::-webkit-input-placeholder {
     color: rgba(112, 112, 112, 0.54);
-    font-family: georgia;
-    font-style: italic;
-    font-size: 16px;
+    font-family: Roboto;
+    font-size: 14px;
  }
 
  #user, #password{
     background-repeat:no-repeat;
-    background-size: 20px;
-    background-position-y: 9px;
-    background-position-x: 4px;
+    background-size: 18px;
+    background-position-y: 10px;
+    background-position-x: 8px;
  }
  
 #user{
