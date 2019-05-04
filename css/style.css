@@ -19,7 +19,7 @@ body {
     margin: auto;
 }
 
-#principal .image-logo{
+.image-logo{
     max-width: 106px;
     margin-left: 45%;
     margin-top: 10%;
@@ -32,7 +32,7 @@ body {
     border-top-left-radius: 0;
 }
 
-#principal .image-logo img{
+.image-logo img{
     margin: 0 auto;
     width: 106px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
@@ -44,7 +44,7 @@ border-radius: 100px;
 border-top-left-radius: 0;
 }
 
-#principal .form{
+.form{
     border-radius: 6px;
     max-width: 301px;
     max-height: 343px;
@@ -58,7 +58,7 @@ border-top-left-radius: 0;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
 }
 
-#principal .form input{
+.form input{
     width: 223px;
     height: 39px;
     display: block;
@@ -92,7 +92,7 @@ border-top-left-radius: 0;
 
 }
 
-#principal .form button{
+.form button{
     background: #84DDFF;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
     border: 0px;
@@ -104,9 +104,14 @@ border-top-left-radius: 0;
     font-family: Roboto;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.35);
     margin: 20px 30%;
+    cursor: pointer;
 }
 
-#principal .form .forgotPass{
+.form button:hover{
+    background-color: #39ff14;
+}
+
+.form .forgotPass{
     text-align: right;
     margin-right: 34px;
     color: #ABABAB;
@@ -116,7 +121,11 @@ border-top-left-radius: 0;
     font-size: 11px;
 }
 
-#principal .form  .register{
+.form a:hover{
+    color: blue;
+}
+
+.register{
     color: #707070;
     margin-top:0px;
     font-family: arial;
@@ -124,8 +133,12 @@ border-top-left-radius: 0;
     text-align: center;
 }
 
-#principal .form .register a{
+.register a{
     color: #707070;
     text-decoration: none;
     display: inline;
+}
+
+.register a:hover{
+    color: blue;
 }
