@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	<title>Cadastro - Twitter</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+   
+</head>
+<body>
+
+    <!-- início do conteúdo da página - login -->
+    <div id="principal">
+        <!-- imagem do logo-->
+        <div class="image-logoCad">
+                <img src="images/monitor-window.png"/>
+            </div>
+            <!-- formulário -->
+            <div class="formCad">
+                <h1>CADASTRE-SE</h1>
+                <p>Digite seus dados para se cadastrar no (nomedoSite)</p>
+                <br>
+                    <form>
+                        <div class="pt1">
+                            <p>Nome:</p>
+                            <input id="nome"type="text" name="nome" required>
+                            <p>Sobrenome:</p>
+                            <input id="sobrenome" type="text" name="sobrenome" required>
+                            <p>Data de Nascimento:</p>
+                            <input id="data" type="date" name="usuario" required>
+                            <p>Gênero:</p>
+                            <select id="select">
+                                <option>Masculino</option>
+                                <option>Feminino</option>
+                                <option>Não-binário</option>
+                                <option>Fluido</option>
+                                <option>Agênero</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div class="pt2">
+                            <p>Email:</p>
+                            <input type="email" name="email" id="email"required>
+                            <p>Usuário:</p>
+                            <input type="text" name="senha" id="senha"required>
+                            <p>Senha:</p>
+                            <input id="date" type="password" name="nascimento" required>
+                            <p>Confirmação de senha:</p>
+                            <input id="date" type="password" name="nascimento" required>
+                        </div>
+                        <a href="index.html"><input id="cancelar" type="button" name="cancelar" value="Cancelar"></a>
+                        <input id="cadastrar" type="submit" name="enviar" value="Cadastrar">
+                </form>
+
+            </div>
+
+    </div>
+ 
+</body>
+</html>
