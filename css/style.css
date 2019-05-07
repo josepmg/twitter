@@ -107,7 +107,7 @@ border-top-left-radius: 0;
 }
 
 .form button:hover{
-    background-color: #39ff14;
+    background-color: #73dd69;
     transition: 0.3s;
 }
 
@@ -132,8 +132,6 @@ border-top-left-radius: 0;
     font-size: 11px;
     text-align: center;
 }
-
-
 
 .register a{
     color: #707070;
@@ -205,15 +203,10 @@ border-top-left-radius: 0;
     margin: auto;
 }
 
-.pt1 input,p{ 
+.pt1, .pt2 input,p{ 
     font-family: arial;
     display: block!important;
     margin-bottom: white;
-}
-
-.pt2 input,p{ 
-    font-family: arial;
-    display: block!important;
 }
 
 #select{
@@ -222,7 +215,7 @@ border-top-left-radius: 0;
     border: 1px solid rgba(112, 112, 112, 0.21);
 }
 
-.pt1 p{
+.pt1 p, .pt2 p{
     letter-spacing: 0.1px!important;
     padding-left: 0%; 
     color: rgba(0,0,0,0.4);
@@ -231,24 +224,9 @@ border-top-left-radius: 0;
     color: grey;
 }
 
-.pt2 p{
-    letter-spacing: 0.1px!important;
-    color: rgba(0,0,0,0.4)!important;
-    margin-top:2%;
-    margin-bottom: 2%!important;
-    padding-left: 0%;
-    color: grey!important;
-}
-
-.pt2 input{
+.pt1 input,.pt2 input{
     border: 1px solid rgba(112, 112, 112, 0.21);
     padding: 3%!important;
-    width: 80%;
-}
-
-.pt1 input{
-    padding: 3%;
-    border: 1px solid rgba(112, 112, 112, 0.21);
     width: 80%;
 }
 
@@ -257,12 +235,14 @@ border-top-left-radius: 0;
     color: white;
     cursor: pointer;
     margin-bottom: 2%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
 }
 .formCad form> a input{
     padding: 2.2% 3%;
     color: white;
     cursor: pointer;
     margin-bottom: 2%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
 }
 
 .formCad form>a{
@@ -279,7 +259,7 @@ border-top-left-radius: 0;
     border-radius: 8px;
     margin-left: 67%;
     font-size: 15px;
-    text-shadow: .3px .3px 1.5px black;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
 }
 
 #cancelar:hover{
@@ -292,11 +272,11 @@ border-top-left-radius: 0;
     background-color: #84DDFF;
     border:none;
     border-radius: 8px;
-    text-shadow: .3px .3px 1.5px black;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
 } 
 
 #cadastrar:hover{
-    background-color:#39ff14;
+    background-color:#73dd69;
     transition: 0.3s;
 } 
 
@@ -344,7 +324,7 @@ border-top-left-radius: 0;
     border-radius: 8px;
     font-size: 15px;
     padding: 4%;
-    text-shadow: .3px .3px 1.5px black;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
 }
 
 #cancelarRec:hover{
@@ -363,10 +343,10 @@ border-top-left-radius: 0;
     background-color: #84DDFF;
     border:none;
     border-radius: 8px;
-    text-shadow: .3px .3px 1.5px black;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
 } 
 
 #cadastrarRec:hover{
-    background-color:#39ff14;
+    background-color:#73dd69;
     transition: 0.3s;
 } 
