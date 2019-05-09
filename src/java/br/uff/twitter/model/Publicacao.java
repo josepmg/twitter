@@ -8,27 +8,21 @@ package br.uff.twitter.model;
 public class Publicacao {
 
     private int idPublicacao;
-    private String titulo;
-    private String subtitulo;
     private String texto;
-    private int autor;
+    private Usuario autor;
     private long dataPublicacao;
 
     public Publicacao() {
     }
 
-    public Publicacao(String titulo, String subtitulo, String texto, int autor, long dataPublicacao) {
-        this.titulo = titulo;
-        this.subtitulo = subtitulo;
+    public Publicacao(String texto, Usuario autor, long dataPublicacao) {
         this.texto = texto;
         this.autor = autor;
         this.dataPublicacao = dataPublicacao;
     }
     
-    public Publicacao(int idPublicacao, String titulo, String subtitulo, String texto, int autor, long dataPublicacao) {
+    public Publicacao(int idPublicacao, String texto, Usuario autor, long dataPublicacao) {
         this.idPublicacao = idPublicacao;
-        this.titulo = titulo;
-        this.subtitulo = subtitulo;
         this.texto = texto;
         this.autor = autor;
         this.dataPublicacao = dataPublicacao;
@@ -42,22 +36,6 @@ public class Publicacao {
         this.idPublicacao = idPublicacao;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getSubtitulo() {
-        return subtitulo;
-    }
-
-    public void setSubtitulo(String subtitulo) {
-        this.subtitulo = subtitulo;
-    }
-
     public String getTexto() {
         return texto;
     }
@@ -66,11 +44,11 @@ public class Publicacao {
         this.texto = texto;
     }
 
-    public int getAutor() {
+    public Usuario getAutor() {
         return autor;
     }
 
-    public void setAutor(int autor) {
+    public void setAutor(Usuario autor) {
         this.autor = autor;
     }
 

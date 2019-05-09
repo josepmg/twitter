@@ -54,7 +54,7 @@ public class UsuarioDAO {
     public List<Usuario> listaTodos(){        
         try {
             // Cria uma lista de usuários
-            List<Usuario> usuariosList = new ArrayList<Usuario>();
+            List<Usuario> usuariosList = new ArrayList<>();
             // Cria o statment que contém a Query de consulta
             PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM usuario");
             // Cria uma varíavel para receber o resultado da Query
@@ -146,7 +146,6 @@ public class UsuarioDAO {
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }   
     }
 }
