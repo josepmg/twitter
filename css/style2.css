@@ -1,0 +1,113 @@
+*, html, body, h1, p, div, section {
+    margin: 0;
+    padding:0; 
+}
+
+body{
+    background-color: #000000c9;
+}
+.menu{
+    width: 20%;
+    height: 100%!important;
+    background-color: #FA7268;
+    position: fixed;
+}
+
+.menuFoto{
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    margin-left: 30%;
+    margin-top: 15%;
+    border-radius: 100px;
+    margin-bottom: 7%;
+}
+
+.menuName{
+    text-align: center;
+    margin-top: 3%;
+    font-size: 20px;
+    margin-bottom: 10%;
+    color:white;
+}
+
+.menuName a{
+    text-decoration: none;
+}
+
+.menuName a:hover{
+    text-decoration: none;
+}
+
+.menu > nav ul a li{
+    width: 88%;
+    color: white;
+    padding: 5% 0%;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: arial;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+    padding: 8% 6%;
+}
+
+#inicio{
+    border-top: 2px solid white;
+    background-color: rgb(95, 166, 247);
+}
+
+.menu > nav ul a li:hover{
+background-color: #84DDFF;
+}
+
+.logo {
+    width: 150px;
+    background-color:#84DDFF;
+    border-radius: 100px; 
+    border-top-left-radius: 0;
+    margin: 28%;
+}
+
+.logo img{
+    width: 150px;
+}
+
+.feed{
+    margin-left: 20%;
+    width: 80%;
+    background-color: white;
+    padding-top: 5%;
+}
+
+.texting{
+    width: 50%;
+    height: 25%;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    margin-left: 25%;
+}
+
+.edit{
+    width: 100%;
+    height: 15%;
+    background-color: grey;
+}
+
+.text{
+    width: 100%;
+}
+
+.tweet{
+    margin-top: 5%;
+    width: 50%;
+    height: 25%;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    margin-left: 25%;
+}
+
+.rodape{
+    width: 80%;
+    height: 200px;
+    margin-left: 20%;
+    background-color: #000000c9;
+    position: relative;
+}
