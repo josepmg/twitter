@@ -7,7 +7,7 @@ body{
 }
 .menu{
     width: 20%;
-    height: 100%!important;
+    height: 100vh!important;
     background-color: #FA7268;
     position: fixed;
 }
@@ -20,6 +20,7 @@ body{
     margin-top: 15%;
     border-radius: 100px;
     margin-bottom: 7%;
+    box-shadow: 1px 1px 10px black;
 }
 
 .menuFoto img{
@@ -32,6 +33,7 @@ body{
     font-size: 18px;
     margin-bottom: 10%;
     color:white;
+    text-shadow: 1px 1px 5px black;
 }
 
 .menuName a{
@@ -54,13 +56,13 @@ body{
     padding: 5% 6%;
 }
 
-#inicio{
+#feed{
     border-top: 2px solid white;
-    background-color: aquamarine;
+    background-color: #84DDFF;
 }
 
 .menu > nav ul a li:hover{
-background-color: #84DDFF;
+background-color: rgb(198, 238, 253);
 }
 
 .logo {
@@ -69,6 +71,7 @@ background-color: #84DDFF;
     border-radius: 100px; 
     border-top-left-radius: 0;
     margin: 28%;
+    box-shadow: 1px 1px 10px black;
 }
 
 .logo img{
@@ -105,9 +108,10 @@ background-color: #84DDFF;
     overflow: hidden;
     margin-top: 5%;
     width: 50%;
-    height: 25%;
+    height: 150px;
     border: 1px solid rgba(0, 0, 0, 0.16);
     margin-left: 25%;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.16);
 }
 
 .tweetPt1{
@@ -130,19 +134,22 @@ background-color: #84DDFF;
 }
 
 .tweetMsg{
-    margin-top: 10%;
+    height: 60%;
+    margin-top: 5%;
     float: left;
     margin-left: 2%;
 }
 
 .tweetPt2{
-    background-color: aquamarine;
+    background-color: #84DDFF;
     width: 100%;
     height: 45px;
     padding-top: 1%;
+    bottom: 0;
 }
 
 .tweetPt2 img{
+    cursor: pointer;
     width: 5%;
     margin-left: 2%;
 }
@@ -150,6 +157,10 @@ background-color: #84DDFF;
 #reply{
     margin-left: 80%;
 }
+
+#like{
+}
+
 .rodape{
     width: 80%;
     height: 80px;
@@ -157,7 +168,6 @@ background-color: #84DDFF;
     background-color: black;
     position: fixed;
     bottom: 0;
-    display: inline;
 }
 
 .rodape input{
