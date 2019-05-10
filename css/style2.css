@@ -14,8 +14,8 @@ body{
 }
 
 .menuFoto{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     background-color: white;
     margin-left: 30%;
     margin-top: 15%;
@@ -26,7 +26,7 @@ body{
 .menuName{
     text-align: center;
     margin-top: 3%;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 10%;
     color:white;
 }
@@ -42,13 +42,12 @@ body{
 .menu > nav ul a li{
     width: 88%;
     color: white;
-    padding: 5% 0%;
     font-size: 20px;
     font-weight: bold;
     font-family: arial;
     border-bottom: 1px solid white;
     cursor: pointer;
-    padding: 8% 6%;
+    padding: 5% 6%;
 }
 
 #inicio{
@@ -61,7 +60,7 @@ background-color: #84DDFF;
 }
 
 .logo {
-    width: 150px;
+    width: 100px;
     background-color:#84DDFF;
     border-radius: 100px; 
     border-top-left-radius: 0;
@@ -69,7 +68,7 @@ background-color: #84DDFF;
 }
 
 .logo img{
-    width: 150px;
+    width: 100px;
 }
 
 .feed{
