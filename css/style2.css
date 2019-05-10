@@ -4,7 +4,6 @@
 }
 
 body{
-    background-color: #000000c9;
 }
 .menu{
     width: 20%;
@@ -14,13 +13,17 @@ body{
 }
 
 .menuFoto{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-color: white;
-    margin-left: 30%;
+    margin-left: 35%;
     margin-top: 15%;
     border-radius: 100px;
     margin-bottom: 7%;
+}
+
+.menuFoto img{
+    width:100%;
 }
 
 .menuName{
@@ -42,6 +45,7 @@ body{
 .menu > nav ul a li{
     width: 88%;
     color: white;
+    text-shadow: 1px 1px 5px black;
     font-size: 20px;
     font-weight: bold;
     font-family: arial;
@@ -52,7 +56,7 @@ body{
 
 #inicio{
     border-top: 2px solid white;
-    background-color: rgb(95, 166, 247);
+    background-color: aquamarine;
 }
 
 .menu > nav ul a li:hover{
@@ -75,12 +79,12 @@ background-color: #84DDFF;
     margin-left: 20%;
     width: 80%;
     background-color: white;
-    padding-top: 5%;
+    padding-top: 2%;
 }
 
 .texting{
     width: 50%;
-    height: 25%;
+    height: 20%;
     border: 1px solid rgba(0, 0, 0, 0.16);
     margin-left: 25%;
 }
@@ -96,6 +100,7 @@ background-color: #84DDFF;
 }
 
 .tweet{
+    overflow: hidden;
     margin-top: 5%;
     width: 50%;
     height: 25%;
@@ -103,10 +108,72 @@ background-color: #84DDFF;
     margin-left: 25%;
 }
 
+.tweetPt1{
+    display: inline;
+}
+
+.tweetFoto{
+    float: left;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    margin-left: 2%;
+    margin-top: 3%;
+    border-radius: 100px;
+    margin-bottom: 6%;
+}
+
+.tweetFoto img{
+    width:100%;
+}
+
+.tweetMsg{
+    margin-top: 10%;
+    float: left;
+    margin-left: 2%;
+}
+
+.tweetPt2{
+    background-color: aquamarine;
+    width: 100%;
+    height: 45px;
+    padding-top: 1%;
+}
+
+.tweetPt2 img{
+    width: 5%;
+    margin-left: 2%;
+}
+
+#reply{
+    margin-left: 80%;
+}
 .rodape{
     width: 80%;
-    height: 200px;
+    height: 80px;
     margin-left: 20%;
-    background-color: #000000c9;
-    position: relative;
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    display: inline;
+}
+
+.rodape input{
+    border: none;
+    margin-top: 3%;
+    margin-left: 50%;
+    padding: .5%;
+    border-radius: 7px;
+}
+
+.rodape button{
+    font-family: arial;
+    border-radius: 7px;
+    padding: .5% 2%;;
+    cursor: pointer;
+    border: none;
+}
+
+.rodape button:hover{
+    background-color: rgb(12, 192, 12);
 }
