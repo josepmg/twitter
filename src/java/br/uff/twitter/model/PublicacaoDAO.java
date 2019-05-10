@@ -56,7 +56,9 @@ public class PublicacaoDAO {
             // Cria uma lista de publicações
             List<Publicacao> publicacaoList = new ArrayList<>();
             // Cria o statment que contém a Query de consulta
-            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM publicacao");
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM publicacao "
+                    + "ORDER BY dataPublicaco DESC "
+                    + "LIMIT 10");
             // Cria uma varíavel para receber o resultado da Query
             ResultSet rs = stmt.executeQuery();
             
@@ -65,7 +67,7 @@ public class PublicacaoDAO {
                 publicacaoList.add(new Publicacao(
                         rs.getInt("idPublicacao"), 
                         rs.getString("texto"), 
-                        (new UsuarioDAO()).busca(rs.getInt("idUsuario")), 
+                        (new UsuarioDAO()).busca(rs.getInt("autor")), 
                         rs.getLong("dataPublicaco")
                 ));
                

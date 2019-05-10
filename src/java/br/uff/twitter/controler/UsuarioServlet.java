@@ -30,25 +30,20 @@ public class UsuarioServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         switch(Integer.valueOf(request.getParameter("operacao"))){
             case 0:
-                System.out.println("Operação Criar");
                 criaUsuario(request, response);
                 break;
             case 1:
-                System.out.println("Operação Recuperar");
                 listaUsuarios(request,response);
                 break;
             case 2:
-                System.out.println("Operação Alterar");
                 atualizaUsuario(request, response);
                 listaUsuarios(request, response);
                 break;
             case 3:
-                System.out.println("Operação Deletar");
                 removeUsuario(request, response);
                 listaUsuarios(request, response);
                 break;
             case 4:
-                System.out.println("Operação Carregar");
                 buscaUmUsuario(request, response);
             default:
                 break;
@@ -99,7 +94,6 @@ public class UsuarioServlet extends HttpServlet {
         try {
             usuarioDAO.fechaConexao();
             listaUsuarios(request,response);
-//            request.getRequestDispatcher("/twitter/UsuarioServlet?operacao=1").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,14 +112,11 @@ public class UsuarioServlet extends HttpServlet {
                 request.getParameter("senha"));
         usuario.setIdUsuario(Integer.valueOf(request.getParameter("idUsuario")));
         
-        System.out.println("Novo nome: " + usuario.getNomeCompleto());
-        
         // Chama método para cadastrar usuário
         usuarioDAO.altera(usuario);
 
         try {
             usuarioDAO.fechaConexao();
-//            request.getRequestDispatcher("/twitter/UsuarioServlet?operacao=1").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

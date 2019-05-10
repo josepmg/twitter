@@ -23,7 +23,7 @@
                     <li> <h3>${u.nomeCompleto}</h3> 
                         <form action="/twitter/UsuarioServlet?operacao=3" method="post"> <input type="hidden" name="id" value="${u.idUsuario}"/> <input type="submit" value="Deletar"> </form>
                         <form action="/twitter/UsuarioServlet?operacao=4" method="post"> <input type="hidden" name="id" value="${u.idUsuario}"/> <input type="submit" value="Alterar dados"> </form>
-                        <form action="/twitter/PublicacaoServlet" method="post"> <input type="hidden" name="usuario" value="jp"/> <input type="submit" value="Listar comentários"> </form>
+                        <form action="/twitter/PublicacaoServlet?operacao=1" method="post"> <input type="hidden" name="usuario" value="${u.idUsuario}"/> <input type="submit" value="Listar comentários"> </form>
                     </li>
                 </c:forEach>
             </c:if>

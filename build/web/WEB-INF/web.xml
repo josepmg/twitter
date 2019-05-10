@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>NovoUsuarioServlet</servlet-name>
-        <servlet-class>br.uff.twitter.controler.NovoUsuarioServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>br.uff.twitter.controler.MainServlet</servlet-class>
     </servlet>
@@ -13,13 +9,9 @@
         <servlet-class>br.uff.twitter.controler.UsuarioServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ComentarioServlet</servlet-name>
+        <servlet-name>PublicacaoServlet</servlet-name>
         <servlet-class>br.uff.twitter.controler.PublicacaoServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>NovoUsuarioServlet</servlet-name>
-        <url-pattern>/novoUsuario</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern/>
@@ -29,8 +21,8 @@
         <url-pattern>/UsuarioServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ComentarioServlet</servlet-name>
-        <url-pattern>/ComentarioServlet</url-pattern>
+        <servlet-name>PublicacaoServlet</servlet-name>
+        <url-pattern>/PublicacaoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

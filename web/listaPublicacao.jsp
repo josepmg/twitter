@@ -8,9 +8,9 @@
     pageContext.setAttribute("listaPublicacoes", listaPublicacoes);
    
     // Recupera usuário que fez a publicação
-    Usuario usuario = (Usuario) request.getAttribute("usuario");
+    Usuario u = (Usuario) request.getAttribute("usuario");
     // O usuário é colocado no contexto da página. Assim o JSTL terá acesso a ela
-    pageContext.setAttribute("usuarioEncontrado", usuario);
+    pageContext.setAttribute("usuarioEncontrado", u);
 %>
 <!DOCTYPE html>
 <html>
@@ -27,20 +27,25 @@
         </h1>
         <br/><br/>
         <div style="width: 30%; float: left">
-            <form>
+            <form action="/twitter/PublicacaoServlet?operacao=0" method="post">
                 Texto: <br/>
-                <textarea name="texto" maxlength="145" rows="8" cols="20"></textarea>
+                <textarea name="texto" maxlength="150" rows="8" cols="20"></textarea>
                 <input type="hidden" name="idUsuario" value="${usuarioEncontrado.idUsuario}"/>
                 <br/><br/>
                 <input type="submit" value="Publicar">
             </form>
         </div>
         <div style="width: 70%; float: left">
-            <c:if test="${listaUsuarios != null}" >
+            <c:if test="${listaPublicacoes != null}" >
                 <c:forEach var="p" items="${listaPublicacoes}">
                     ${p.texto}
                     <br/> <br/>
-                    <form action="/twitter/PublicacaoServlet?operacao=3" method="post"> <input type="hidden" name="id" value="${p.idPublicacao}"/> <input type="submit" value="Deletar"> </form>
+                    <form action="/twitter/PublicacaoServlet?operacao=2" method="post"> 
+                        <input type="hidden" name="id" value="${p.idPublicacao}"/> 
+                        <input type="submit" value="Deletar">
+                    </form>    
+                    <hr>
+                    <br/>    
                 </c:forEach>
             </c:if>
         </div>
