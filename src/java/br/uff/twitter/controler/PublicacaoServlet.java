@@ -82,7 +82,8 @@ public class PublicacaoServlet extends HttpServlet {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void criaPublicacao(HttpServletRequest request, HttpServletResponse response) {
+    private void criaPublicacao(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
             
         // Cria um novo usuário com os dados dos Form
         Publicacao publicacao = new Publicacao(
