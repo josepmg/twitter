@@ -14,5 +14,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+private.xml 
 
 # End of https://www.gitignore.io/api/netbeans,java-web
