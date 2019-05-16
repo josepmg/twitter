@@ -5,6 +5,8 @@
  */
 package br.uff.twitter.controler;
 
+import br.uff.twitter.model.Comentario;
+import br.uff.twitter.model.ComentarioDAO;
 import br.uff.twitter.model.Publicacao;
 import br.uff.twitter.model.PublicacaoDAO;
 import br.uff.twitter.model.Usuario;
@@ -50,6 +52,9 @@ public class PublicacaoServlet extends HttpServlet {
                 removePublicacao(request, response);
                 listaPublicacao(request, response);
                 break;
+            case 3:
+                criaComentario(request, response);
+                break;
             default:
                 break;
         }
@@ -57,14 +62,6 @@ public class PublicacaoServlet extends HttpServlet {
     
     private void listaPublicacao(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        System.out.println("(Lista) Nome: " + request.getParameter("usuario"));
-        System.out.println("(Lista) Nome: " + request.getAttribute("usuario"));
-        
-        List<Publicacao> publicacaoList = new ArrayList<>();
-        publicacaoList = (new PublicacaoDAO()).listaTodos();
-        
-        // Adiciona a lista de publicações 
-        request.setAttribute("publicacoes", publicacaoList);
         // Adiciona o usuário
         Usuario usuario = null;
         
@@ -73,6 +70,19 @@ public class PublicacaoServlet extends HttpServlet {
         if (request.getParameter("usuario") != null)
             usuario = (new UsuarioDAO()).busca(Integer.valueOf(request.getParameter("usuario")));
         request.setAttribute("usuario", usuario);
+        
+        List<Publicacao> publicacaoList = new ArrayList<>();
+        // Recupera publicações de um usuario
+        publicacaoList = (new PublicacaoDAO()).listaPorAutor(usuario.getIdUsuario());
+        
+        // Para cada publicação, recuperará seus comentários
+        for (Publicacao p : publicacaoList){
+            System.out.println("p.id: " + p.getIdPublicacao());
+            p.setListaComentarios((new ComentarioDAO()).listaPorPublicacao(p.getIdPublicacao()));
+        }
+        
+        // Adiciona a lista de publicações 
+        request.setAttribute("publicacoes", publicacaoList);
        
         
         // Troca de tela pelo Dispatcher
@@ -85,7 +95,7 @@ public class PublicacaoServlet extends HttpServlet {
         // Cria um objeto de acesso ao BD
         PublicacaoDAO publicacaoDAO = new PublicacaoDAO();
         // Chama método para cadastrar usuário
-        publicacaoDAO.remove(Integer.valueOf(request.getParameter("id")));
+        publicacaoDAO.remove(Integer.valueOf(request.getParameter("idPublicacao")));
 
         try {
             publicacaoDAO.fechaConexao();
@@ -115,6 +125,34 @@ public class PublicacaoServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void criaComentario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        
+        // Instancia um novo comentario
+        Comentario comentario = new Comentario(
+                request.getParameter("textoComentario"), 
+                (new Date()).getTime(), 
+                (new UsuarioDAO()).busca(Integer.valueOf(request.getParameter("idUsuario")))
+        );
+        
+        // Recupera publicação
+        Publicacao publicacao = (new PublicacaoDAO()).busca(Integer.valueOf(request.getParameter("idPublicacao")));
+        System.out.println("kkk" + comentario == null);
+        publicacao.adicionaComentario(comentario);
+        System.out.println("ok2");
+        
+        // Cria o comentário no BD
+        ComentarioDAO comentarioDAO = new ComentarioDAO();
+        comentarioDAO.adiciona(comentario, publicacao);
+        try {
+            comentarioDAO.fechaConexao();
+            request.setAttribute("usuario", String.valueOf((publicacao.getAutor()).getIdUsuario()));
+            listaPublicacao(request,response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

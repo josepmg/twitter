@@ -39,7 +39,7 @@ public class UsuarioDAO {
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1, u.getNomeCompleto());
-            stmt.setString(2, String.valueOf(u.getDataNascimento()));
+            stmt.setLong(2, u.getDataNascimento());
             stmt.setString(3, u.getApelido());
             stmt.setString(4, u.getEmail());
             stmt.setString(5, u.getSenha());
@@ -85,7 +85,7 @@ public class UsuarioDAO {
         try {
             // Cria o statment que contém a Query de consulta
             PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ?");
-            stmt.setString(1, String.valueOf(id));
+            stmt.setInt(1, id);
             // Cria uma varíavel para receber o resultado da Query
             ResultSet rs = stmt.executeQuery();
             
@@ -125,7 +125,7 @@ public class UsuarioDAO {
                     + "senha = ? "
                     + "WHERE idUsuario = ?");
             stmt.setString(1, u.getNomeCompleto());
-            stmt.setString(2, String.valueOf(u.getDataNascimento()));
+            stmt.setLong(2, u.getDataNascimento());
             stmt.setString(3, u.getApelido());
             stmt.setString(4, u.getEmail());
             stmt.setString(5, u.getSenha());
@@ -140,6 +140,10 @@ public class UsuarioDAO {
     
     public void remove(int id){
         try {
+            
+            (new ComentarioDAO()).removePorAutor(id);
+            (new PublicacaoDAO()).removePorAutor(id);
+            
             PreparedStatement stmt = this.conn.prepareStatement("DELETE FROM usuario WHERE idUsuario = ?");
             stmt.setInt(1, id);
             stmt.execute();

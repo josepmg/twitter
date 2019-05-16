@@ -1,9 +1,11 @@
+<%@page import="br.uff.twitter.model.Publicacao"%>
+<%@page import="br.uff.twitter.model.UsuarioDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="br.uff.twitter.model.Usuario"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-    ArrayList<Usuario> listaPublicacoes = (ArrayList<Usuario>) request.getAttribute("publicacoes");
+    ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>) request.getAttribute("publicacoes");
     // A lista de usuários é colocada no contexto da página. Assim o JSTL terá acesso a ela
     pageContext.setAttribute("listaPublicacoes", listaPublicacoes);
    
@@ -38,10 +40,24 @@
         <div style="width: 70%; float: left">
             <c:if test="${listaPublicacoes != null}" >
                 <c:forEach var="p" items="${listaPublicacoes}">
-                    ${p.texto}
-                    <br/> <br/>
+                    <h2>${p.texto}</h2>
+                    <br/> 
+                    <!-- Lista de comentários -->
+                    <c:if test="${p.listaComentarios != null}" >
+                        <c:forEach var="c" items="${p.listaComentarios}">
+                            ${c.texto} - ${c.autor.nomeCompleto}<br/>
+                        </c:forEach>
+                    </c:if>
+                    <br/><br/>
+                    <!-- Adiciona um comentário -->
+                    <form action="/twitter/PublicacaoServlet?operacao=3" method="post">
+                        <input type="text" maxlength="150" name="textoComentario"/>
+                        <input type="hidden" name="idPublicacao" value="${p.idPublicacao}"/> 
+                        <input type="hidden" name="idUsuario" value="${usuarioEncontrado.idUsuario}"/>
+                        <input type="submit" value="Comentar">
+                    </form>
                     <form action="/twitter/PublicacaoServlet?operacao=2" method="post"> 
-                        <input type="hidden" name="id" value="${p.idPublicacao}"/> 
+                        <input type="hidden" name="idPublicacao" value="${p.idPublicacao}"/> 
                         <input type="submit" value="Deletar">
                     </form>    
                     <hr>

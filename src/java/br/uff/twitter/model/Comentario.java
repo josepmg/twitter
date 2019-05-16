@@ -10,25 +10,25 @@ public class Comentario {
     private int idComentario;
     private String texto;
     private long dataComentario;
-    private int autor;
-    private int publicacao;
+    private Usuario autor;
+//    private int publicacao;
 
     public Comentario() {
     }
 
-    public Comentario(String texto, long dataComentario, int autor, int publicacao) {
+    public Comentario(String texto, long dataComentario , Usuario autor /*, int publicacao */) {
         this.texto = texto;
         this.dataComentario = dataComentario;
         this.autor = autor;
-        this.publicacao = publicacao;
+//        this.publicacao = publicacao;
     }
     
-    public Comentario(int idComentario, String texto, long dataComentario, int autor, int publicacao) {
+    public Comentario(int idComentario, String texto, long dataComentario , Usuario autor /*, int publicacao*/) {
         this.idComentario = idComentario;
         this.texto = texto;
         this.dataComentario = dataComentario;
         this.autor = autor;
-        this.publicacao = publicacao;
+//        this.publicacao = publicacao;
     }
 
     public int getIdComentario() {
@@ -55,21 +55,21 @@ public class Comentario {
         this.dataComentario = dataComentario;
     }
 
-    public int getAutor() {
+    public Usuario getAutor() {
         return autor;
     }
 
-    public void setAutor(int autor) {
+    public void setAutor(Usuario autor) {
         this.autor = autor;
     }
 
-    public int getPublicacao() {
-        return publicacao;
-    }
-
-    public void setPublicacao(int publicacao) {
-        this.publicacao = publicacao;
-    }
+//    public int getPublicacao() {
+//        return publicacao;
+//    }
+//
+//    public void setPublicacao(int publicacao) {
+//        this.publicacao = publicacao;
+//    }
     
     
 }

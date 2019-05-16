@@ -40,9 +40,9 @@ public class PublicacaoDAO {
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1, p.getTexto());
-            stmt.setString(2, String.valueOf((p.getAutor()).getIdUsuario()));
+            stmt.setInt(2, (p.getAutor()).getIdUsuario());
             // Cria um formato para data
-            stmt.setString(3, String.valueOf(p.getDataPublicacao()));
+            stmt.setLong(3, p.getDataPublicacao());
 
             stmt.execute();
             stmt.close();
@@ -51,14 +51,49 @@ public class PublicacaoDAO {
         }      
     }
     
-    public List<Publicacao> listaTodos(){        
+/*    public List<Publicacao> listaTodos(){        
+//        try {
+//            // Cria uma lista de publicações
+//            List<Publicacao> publicacaoList = new ArrayList<>();
+//            // Cria o statment que contém a Query de consulta
+//            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM publicacao "
+//                    + "ORDER BY dataPublicaco DESC "
+//                    + "LIMIT 10");
+//            // Cria uma varíavel para receber o resultado da Query
+//            ResultSet rs = stmt.executeQuery();
+//            
+//            // laço de repetição para percorrer todas as intâncias do ResultSet
+//            while (rs.next()) {
+//                publicacaoList.add(new Publicacao(
+//                        rs.getInt("idPublicacao"), 
+//                        rs.getString("texto"), 
+//                        (new UsuarioDAO()).busca(rs.getInt("autor")), 
+//                        rs.getLong("dataPublicaco")
+//                ));
+//               
+//            }
+//            // Encerra o ResultSet
+//            rs.close();
+//            // Encerra o Statment
+//            stmt.close();
+//            // Retorna a lista de Usuários do BD
+//            return publicacaoList;
+//        } catch (SQLException  e) {
+//            throw new RuntimeException(e);
+//        }  
+//    }
+*/
+    
+    public List<Publicacao> listaPorAutor(int autor){        
         try {
             // Cria uma lista de publicações
             List<Publicacao> publicacaoList = new ArrayList<>();
             // Cria o statment que contém a Query de consulta
             PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM publicacao "
+                    + "WHERE autor = ? "
                     + "ORDER BY dataPublicaco DESC "
                     + "LIMIT 10");
+            stmt.setInt(1, autor);
             // Cria uma varíavel para receber o resultado da Query
             ResultSet rs = stmt.executeQuery();
             
@@ -68,7 +103,8 @@ public class PublicacaoDAO {
                         rs.getInt("idPublicacao"), 
                         rs.getString("texto"), 
                         (new UsuarioDAO()).busca(rs.getInt("autor")), 
-                        rs.getLong("dataPublicaco")
+                        rs.getLong("dataPublicaco"),
+                        (new ComentarioDAO()).listaPorPublicacao(rs.getInt("idPublicacao"))
                 ));
                
             }
@@ -87,7 +123,7 @@ public class PublicacaoDAO {
         try {
             // Cria o statment que contém a Query de consulta
             PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM publicacao WHERE idPublicacao = ?");
-            stmt.setString(1, String.valueOf(id));
+            stmt.setInt(1, id);
             // Cria uma varíavel para receber o resultado da Query
             ResultSet rs = stmt.executeQuery();
             
@@ -98,7 +134,7 @@ public class PublicacaoDAO {
                 publicacao = new Publicacao(
                         rs.getInt("idPublicacao"), 
                         rs.getString("texto"), 
-                        (new UsuarioDAO()).busca(rs.getInt("idUsuario")), 
+                        (new UsuarioDAO()).busca(rs.getInt("autor")), 
                         rs.getLong("dataPublicaco"));
             }
             else{
@@ -117,6 +153,9 @@ public class PublicacaoDAO {
     
     public void remove(int id){
         try {
+            
+            (new ComentarioDAO()).removePorPublicacao(id);
+            
             PreparedStatement stmt = this.conn.prepareStatement("DELETE FROM publicacao WHERE idPublicacao = ?");
             stmt.setInt(1, id);
             stmt.execute();
@@ -124,6 +163,17 @@ public class PublicacaoDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }   
+    }
+
+    public void removePorAutor(int idUsuario) {
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("DELETE FROM publicacao WHERE autor = ?");
+            stmt.setInt(1, idUsuario);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
     
 }

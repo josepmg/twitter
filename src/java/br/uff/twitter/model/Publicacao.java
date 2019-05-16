@@ -5,12 +5,16 @@
  */
 package br.uff.twitter.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Publicacao {
 
     private int idPublicacao;
     private String texto;
     private Usuario autor;
     private long dataPublicacao;
+    private List<Comentario> listaComentarios = new ArrayList<>();
 
     public Publicacao() {
     }
@@ -27,6 +31,16 @@ public class Publicacao {
         this.autor = autor;
         this.dataPublicacao = dataPublicacao;
     }
+
+    public Publicacao(int idPublicacao, String texto, Usuario autor, long dataPublicacao, List<Comentario> comentariosList) {
+        this.idPublicacao = idPublicacao;
+        this.texto = texto;
+        this.autor = autor;
+        this.dataPublicacao = dataPublicacao;
+        this.listaComentarios = comentariosList;
+    }
+    
+    
 
     public int getIdPublicacao() {
         return idPublicacao;
@@ -59,6 +73,20 @@ public class Publicacao {
     public void setDataPublicacao(long dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
     }
+
+    public List<Comentario> getListaComentarios() {
+        return listaComentarios;
+    }
+
+    public void setListaComentarios(List<Comentario> listaComentarios) {
+        this.listaComentarios = listaComentarios;
+    }
+    
+    public void adicionaComentario(Comentario c){
+        listaComentarios.add(c);
+    }
+    
+    
     
     
 }
