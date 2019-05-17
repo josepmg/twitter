@@ -114,7 +114,7 @@ a {
 
 .texting{
     width: 50%;
-    height: 20%;
+    height: 30%;
     border: 1px solid rgba(0, 0, 0, 0.16);
     margin-left: 25%;
     background-color: white;
@@ -123,7 +123,7 @@ a {
 
 .botaoSend{
     bottom: 5px;
-    right: 5px;
+    right: 5%;
     padding: 9px 12px;;
     border: 1px solid black;
     border-radius: 5px;
@@ -151,7 +151,15 @@ a {
     height: 85%;
 }
 
+.text textarea{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 2%;
+    height: 100px;
+}
+
 .tweet{
+    position: relative;
     overflow: hidden;
     background-color: white;
     margin-top: 5%;
@@ -185,57 +193,32 @@ a {
 
 .tweetMsg{
     display: inline-block;
-    top:0;
     margin-left: 2%;
+    position: absolute;
+    margin-top: 2%;
+    width: 80%;
+    height: 100px;
 }
 
 .tweetPt2{
+    position: absolute;
     background-color: #84DDFF;
     width: 100%;
     height: 45px;
     padding-top: 2%;
-    top:0;
 }
 
 .tweetPt2 img{
+    margin-right: 3%;
     cursor: pointer;
-    width: 3%;
+    width: 5%;
     margin-left: 2%;
-    margin-top: 2%;
 }
 
 #reply{
     margin-left: 80%;
 }
 
-.rodape{
-    width: 80%;
-    height: 80px;
-    margin-left: 20%;
-    background-color: black;
-    position: fixed;
-    bottom: 0;
-}
-
-.rodape input{
-    border: none;
-    margin-top: 3%;
-    margin-left: 50%;
-    padding: .5%;
-    border-radius: 7px;
-}
-
-.rodape button{
-    font-family: arial;
-    border-radius: 7px;
-    padding: .5% 2%;;
-    cursor: pointer;
-    border: none;
-}
-
-.rodape button:hover{
-    background-color: rgb(12, 192, 12);
-}
 
 /* CSS Perfil */
 
