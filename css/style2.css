@@ -76,9 +76,9 @@ a {
     border: 1.5px solid white;
 }
 
-#amigos{
+#conta{
     background-color: #FA7268;
-    color:white;
+    color:white!important;
     text-shadow: none;
     border:1.5px solid white;
 }
@@ -130,15 +130,21 @@ a {
 }
 
 .botaoSend{
-    padding: 6px;
+    bottom: 5px;
+    right: 5px;
+    padding: 9px 12px;;
     border: 1px solid black;
     border-radius: 5px;
     background-color: #73dd69;
     float: right;
-    margin-top: 15%;
-    margin-right: 2%;
     color: white;
     cursor: pointer;
+    position: absolute;
+    border: none!important;
+}
+.botaoSend:hover{
+    background-color: #FA7268;
+    color: black
 }
 
 .edit{
@@ -148,7 +154,9 @@ a {
 }
 
 .text{
+    position: relative;
     width: 100%;
+    height: 85%;
 }
 
 .tweet{
@@ -163,11 +171,12 @@ a {
 }
 
 .tweetPt1{
-    display: inline;
+    width: 100%;
+    display: inline-block;
 }
 
 .tweetFoto{
-    float: left;
+    display: inline-block;
     width: 70px;
     height: 70px;
     background-color: white;
@@ -183,8 +192,8 @@ a {
 }
 
 .tweetMsg{
-    margin-top: 5%;
-    float: left;
+    display: inline-block;
+    top:0;
     margin-left: 2%;
 }
 
@@ -192,12 +201,15 @@ a {
     background-color: #84DDFF;
     width: 100%;
     height: 45px;
+    padding-top: 2%;
+    top:0;
 }
 
 .tweetPt2 img{
     cursor: pointer;
     width: 3%;
     margin-left: 2%;
+    margin-top: 2%;
 }
 
 #reply{
@@ -233,9 +245,9 @@ a {
     background-color: rgb(12, 192, 12);
 }
 
-/* CSS página Amigos */
+/* CSS página Conta */
 
-.friends{
+.conta{
     margin-left: 20%;
     width: 80%;
     height: 100%;   
@@ -243,7 +255,7 @@ a {
     padding-top: 2%;
 }
 
-.fundoFriends{
+.fundoConta{
     background-color: white;
     width: 70%;
     margin-left: 15%;
@@ -251,41 +263,19 @@ a {
 
 }
 
-.friends h2{
+.conta h2{
     font-size: 28px;
     padding-top: 2%;
     font-family: 'Quicksand', sans-serif;
-    margin-left: 10%;
+    margin-left: 3%;
 }
-.friends p{
+.conta p{
     margin-top: 2%;
     font-family: 'Quicksand', sans-serif;
     margin-left: 10%;
 }
 
-.listFriends img{
+#alteraCadastro {
     margin-top: 1%;
-    margin-left: 10%;
-    float: left;
-    width: 6%;
-    padding-bottom: 1%;
-}
-
-.listFriends{
-    width: 100%;
-    margin-top: 4%;
-    border-bottom:1px solid black;
-    display: inline-block;
-}
-
-.listFriends p{
-    margin-left: 2%;
-    margin-top: 3%;
-    display: inline-block;
-}
-
-#friendUser:hover{
-    color: blue;
-    cursor: pointer;
-    font-weight: bold;
+    margin-bottom: 0%;
 }
