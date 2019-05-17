@@ -5,7 +5,11 @@
 	<title>Feed - Twitter</title>
     <link href="css/style2.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
    
 </head>
 
@@ -15,14 +19,15 @@
     <div class="menu">
         <div class="menuFoto"><img src="images/user.png"/></div>
         <div class="menuName"> 
-            <h3>@Nomeusuário</h3>
+            <p>Olá,</p>
+            <h3>Nomeusuário</h3>
         </div>
-        <nav>
+        <nav style="clear:both">
             <ul>
-                <a><li id="feed">Feed</li></a>
-                <a><li>Amigos</li></a>
-                <a><li>Conta</li></a>
-                <a><li>Sair</li></a>
+                <a><li id="feed"><i class="fas fa-home"></i> FEED</li></a>
+                <a href="amigos.html"><li><i class="fas fa-user-friends"></i> AMIGOS</li></a>
+                <a><li><i class="fas fa-cog"></i> CONTA</li></a>
+                <a><li><i class="fas fa-sign-out-alt"></i>  SAIR</li></a>
             </ul>
         </nav>
         <div class="logo"><img src="images/monitor-window.png"/></div>
@@ -30,7 +35,9 @@
     <div class="feed">
         <div class="texting">
             <div class="edit"></div>
-            <div class="text"><p style="margin-left: 10%;">Type your text</p></div>
+            <div class="text"><p style="margin-left: 10%;">Type your text</p>
+                <button class="botaoSend">Enviar <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
         </div>
         <div class="tweet">
             <div class="tweetPt1">
@@ -40,8 +47,7 @@
                 </div>
             </div>
             <div class="tweetpt2" style="clear: both">
-                <img id="reply"src="images/reply.png"/>
-                <img src="images/empty.png"/>
+                <img id="reply"src="images/reply.png"/> 12
             </div>
         </div>
         <div class="tweet">
@@ -52,8 +58,7 @@
                     </div>
                 </div>
                 <div class="tweetpt2" style="clear: both">
-                    <img id="reply"src="images/reply.png"/>
-                    <img src="images/full.png"/>
+                    <img id="reply"src="images/reply.png"/>34
                 </div>
             </div>
             <div class="tweet">
@@ -64,8 +69,7 @@
                         </div>
                     </div>
                     <div class="tweetpt2" style="clear: both">
-                        <img id="reply"src="images/reply.png"/>
-                        <img src="images/empty.png"/>
+                        <img id="reply"src="images/reply.png"/>24
                     </div>
                 </div>
                 <div class="tweet">
@@ -76,8 +80,7 @@
                             </div>
                         </div>
                         <div class="tweetpt2" style="clear: both">
-                            <img id="reply"src="images/reply.png"/>
-                            <img src="images/full.png"/>
+                            <img id="reply"src="images/reply.png"/>10
                         </div>
                     </div>
                     <div class="tweet">
@@ -88,8 +91,7 @@
                                 </div>
                             </div>
                             <div class="tweetpt2" style="clear: both">
-                                <img id="reply"src="images/reply.png"/>
-                                <img src="images/empty.png"/>
+                                <img id="reply"src="images/reply.png"/>210
                             </div>
                         </div>
                         <div class="tweet">
@@ -100,8 +102,7 @@
                                     </div>
                                 </div>
                                 <div class="tweetpt2" style="clear: both">
-                                    <img id="reply"src="images/reply.png"/>
-                                    <img src="images/full.png"/>
+                                    <img id="reply"src="images/reply.png"/>89
                                 </div>
                             </div>
     </div>
