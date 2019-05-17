@@ -69,18 +69,11 @@ a {
     border: 0.5px solid rgba(0,0,0,0.2);
 }
 
-#feed{
+#feed, #conta, #perfil{
     background-color: #FA7268;
     color:white;
     text-shadow: none;
     border: 1.5px solid white;
-}
-
-#conta{
-    background-color: #FA7268;
-    color:white!important;
-    text-shadow: none;
-    border:1.5px solid white;
 }
 
 .fas{
@@ -245,6 +238,25 @@ a {
     background-color: rgb(12, 192, 12);
 }
 
+/* CSS Perfil */
+
+.perfil{
+    width: 200px;
+    height: 120px;
+    background-image: url("../images/placa.png");
+    background-repeat: no-repeat;
+    background-position-x: 22px;
+    background-size: 90%;
+    margin-left: 40%!important;
+    border-radius: 20px;
+}
+
+.perfil h2{
+    font-family: 'Quicksand', sans-serif;
+    padding-top: 22%;
+    margin-left: 25%;
+}
+
 /* CSS página Conta */
 
 .conta{
@@ -278,4 +290,8 @@ a {
 #alteraCadastro {
     margin-top: 1%;
     margin-bottom: 0%;
+}
+
+#alteraCadastro p{
+    margin-left:0;
 }
