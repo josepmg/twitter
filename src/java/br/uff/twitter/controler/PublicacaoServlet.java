@@ -86,7 +86,7 @@ public class PublicacaoServlet extends HttpServlet {
        
         
         // Troca de tela pelo Dispatcher
-        getServletConfig().getServletContext().getRequestDispatcher("/listaPublicacao.jsp").forward(request, response);
+        getServletConfig().getServletContext().getRequestDispatcher("/feed.jsp").forward(request, response);
         
     }
 

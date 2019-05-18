@@ -115,6 +115,42 @@ public class UsuarioDAO {
         } 
     }
     
+    public Usuario buscaLogin(String email, String senha){
+        try {
+            System.out.println("Login");
+            System.out.println(email + ":" + senha);
+            // Cria o statment que contém a Query de consulta
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM usuario WHERE "
+                    + "	email = ? and "
+                    + "senha = ?");
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+            // Cria uma varíavel para receber o resultado da Query
+            ResultSet rs = stmt.executeQuery();
+            
+            // Cria usuário encontrado
+            Usuario usuario = null;
+            // Verifica se houve algum retorno
+            if (rs.next()){
+                usuario = new Usuario(
+                        rs.getInt("idUsuario"), 
+                        rs.getString("nomeCompleto"), 
+                        rs.getLong("dataNascimento"), 
+                        rs.getString("apelido"), 
+                        rs.getString("email"), 
+                        rs.getString("senha"));
+            }
+            // Encerra o ResultSet
+            rs.close();
+            // Encerra o Statment
+            stmt.close();
+            // Retorna a lista de Usuários do BD
+            return usuario;
+        } catch (SQLException  e) {
+            throw new RuntimeException(e);
+        } 
+    }
+    
     public void altera(Usuario u){
         try {
             PreparedStatement stmt = this.conn.prepareStatement("UPDATE usuario "
@@ -130,6 +166,21 @@ public class UsuarioDAO {
             stmt.setString(4, u.getEmail());
             stmt.setString(5, u.getSenha());
             stmt.setString(6, String.valueOf(u.getIdUsuario()));
+            System.out.println(stmt.toString());
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void alteraSenha(Usuario u){
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("UPDATE usuario "
+                    + "senha = ? "
+                    + "WHERE idUsuario = ?");
+            stmt.setString(1, u.getSenha());
+            stmt.setString(2, String.valueOf(u.getIdUsuario()));
             System.out.println(stmt.toString());
             stmt.execute();
             stmt.close();

@@ -51,38 +51,38 @@ public class PublicacaoDAO {
         }      
     }
     
-/*    public List<Publicacao> listaTodos(){        
-//        try {
-//            // Cria uma lista de publicações
-//            List<Publicacao> publicacaoList = new ArrayList<>();
-//            // Cria o statment que contém a Query de consulta
-//            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM publicacao "
-//                    + "ORDER BY dataPublicaco DESC "
-//                    + "LIMIT 10");
-//            // Cria uma varíavel para receber o resultado da Query
-//            ResultSet rs = stmt.executeQuery();
-//            
-//            // laço de repetição para percorrer todas as intâncias do ResultSet
-//            while (rs.next()) {
-//                publicacaoList.add(new Publicacao(
-//                        rs.getInt("idPublicacao"), 
-//                        rs.getString("texto"), 
-//                        (new UsuarioDAO()).busca(rs.getInt("autor")), 
-//                        rs.getLong("dataPublicaco")
-//                ));
-//               
-//            }
-//            // Encerra o ResultSet
-//            rs.close();
-//            // Encerra o Statment
-//            stmt.close();
-//            // Retorna a lista de Usuários do BD
-//            return publicacaoList;
-//        } catch (SQLException  e) {
-//            throw new RuntimeException(e);
-//        }  
-//    }
-*/
+    public List<Publicacao> listaTodos(){        
+        try {
+            // Cria uma lista de publicações
+            List<Publicacao> publicacaoList = new ArrayList<>();
+            // Cria o statment que contém a Query de consulta
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM publicacao "
+                    + "ORDER BY dataPublicaco DESC "
+                    + "LIMIT 10");
+            // Cria uma varíavel para receber o resultado da Query
+            ResultSet rs = stmt.executeQuery();
+            
+            // laço de repetição para percorrer todas as intâncias do ResultSet
+            while (rs.next()) {
+                publicacaoList.add(new Publicacao(
+                        rs.getInt("idPublicacao"), 
+                        rs.getString("texto"), 
+                        (new UsuarioDAO()).busca(rs.getInt("autor")), 
+                        rs.getLong("dataPublicaco")
+                ));
+               
+            }
+            // Encerra o ResultSet
+            rs.close();
+            // Encerra o Statment
+            stmt.close();
+            // Retorna a lista de Usuários do BD
+            return publicacaoList;
+        } catch (SQLException  e) {
+            throw new RuntimeException(e);
+        }  
+    }
+
     
     public List<Publicacao> listaPorAutor(int autor){        
         try {

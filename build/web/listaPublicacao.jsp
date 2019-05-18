@@ -4,6 +4,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="br.uff.twitter.model.Usuario"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
     ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>) request.getAttribute("publicacoes");
     // A lista de usuários é colocada no contexto da página. Assim o JSTL terá acesso a ela
@@ -39,13 +40,17 @@
         </div>
         <div style="width: 70%; float: left">
             <c:if test="${listaPublicacoes != null}" >
+                <jsp:useBean id="dateObject" class="java.util.Date"/>
                 <c:forEach var="p" items="${listaPublicacoes}">
                     <h2>${p.texto}</h2>
                     <br/> 
                     <!-- Lista de comentários -->
                     <c:if test="${p.listaComentarios != null}" >
                         <c:forEach var="c" items="${p.listaComentarios}">
-                            ${c.texto} - ${c.autor.nomeCompleto}<br/>
+                            <jsp:setProperty name="dateObject" property="time" value="${c.dataComentario}" />
+                            ${c.texto} - ${c.autor.nomeCompleto} às 
+                            <fmt:formatDate value="${dateObject }" pattern="dd/MM/yyyy kk:mm" />
+                            <br/>
                         </c:forEach>
                     </c:if>
                     <br/><br/>

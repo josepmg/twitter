@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -45,6 +46,10 @@ public class UsuarioServlet extends HttpServlet {
                 break;
             case 4:
                 buscaUmUsuario(request, response);
+                break;
+            case 5:
+                fazLogin(request, response);
+                break;
             default:
                 break;
         }
@@ -133,6 +138,44 @@ public class UsuarioServlet extends HttpServlet {
         getServletConfig().getServletContext().getRequestDispatcher("/editaUsuarioJSP.jsp").forward(request, response);
         
     }
+    
+    private void alteraSenha(HttpServletRequest request, HttpServletResponse response) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(Integer.valueOf(request.getParameter("idUsuario")));
+        usuario.setEmail(request.getParameter("email"));
+        usuario.setSenha(request.getParameter("senha"));
+        
+        // Chama método para cadastrar usuário
+        usuarioDAO.alteraSenha(usuario);
+
+        try {
+            usuarioDAO.fechaConexao();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void fazLogin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Usuario usuario = (new UsuarioDAO()).buscaLogin(
+                request.getParameter("email"), 
+                request.getParameter("senha")
+        );
+        
+        if (usuario !=  null){
+            System.out.println("Achou");
+            HttpSession httpSession = request.getSession();
+            // Salva na session
+            httpSession.setAttribute("usuarioLogado", usuario);
+            // Redireciona
+            getServletConfig().getServletContext().getRequestDispatcher("/feed.jsp").forward(request, response);
+        } else{
+            // redireciona para login.jsp
+            System.out.println("N achou");
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -172,7 +215,4 @@ public class UsuarioServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    
-
 }
