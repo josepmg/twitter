@@ -1,0 +1,353 @@
+*, html, body, h1, p, div, section {
+    margin: 0;
+    padding:0; 
+}
+
+body {
+    background: #FA7268;
+    background-image: url("../images/nuvem.png");
+    background-size: 10%;
+    background-position-y: -12px;
+    background-position-x: 35px;
+}
+
+
+
+#principal {
+    max-width: 960px;
+    padding: 0px;
+    margin: auto;
+}
+
+.image-logo{
+    max-width: 106px;
+    margin-left: 45%;
+    margin-top: 10%;
+    background: #84DDFF;
+    -webkit-border-radius: 100px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius: 100px;
+    -moz-border-radius-topleft: 0;
+    border-radius: 100px;
+    border-top-left-radius: 0;
+}
+
+.image-logo img{
+    margin: 0 auto;
+    width: 106px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+    -webkit-border-radius: 100px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius: 100px;
+    -moz-border-radius-topleft: 0;
+    border-radius: 100px;
+    border-top-left-radius: 0;
+}
+
+.form{
+    border-radius: 6px;
+    max-width: 301px;
+    max-height: 343px;
+    margin: 0 auto;
+    margin-top: -50px;
+    padding: 0px 20px;
+    padding-top: 70px;
+    padding-bottom: 45px;
+    background: #FFFFFF;
+    border: 1px solid rgba(112, 112, 112, 0.16);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+}
+
+.form input{
+    width: 223px;
+    height: 39px;
+    display: block;
+    padding-left: 34px;
+    margin: 6px auto;
+    font-size: 16px;
+    color: #545454;
+    border: 1px solid rgba(112, 112, 112, 0.21);
+}
+
+::-webkit-input-placeholder {
+    color: rgba(112, 112, 112, 0.54);
+    font-family: Roboto;
+    font-size: 14px;
+ }
+
+ #user, #password{
+    background-repeat:no-repeat;
+    background-size: 18px;
+    background-position-y: 10px;
+    background-position-x: 8px;
+ }
+ 
+#user{
+     background-image: url("../images/login.png");
+ 
+ }
+
+#password{
+    background-image: url("../images/senha.png");
+
+}
+
+.form button{
+    background: #84DDFF;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+    border: 0px;
+    padding: 12px 32px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-family: Roboto;
+    text-shadow: .3px .3px 1.5px black;
+    margin: 20px 30%;
+    cursor: pointer;
+}
+
+.form button:hover{
+    background-color: #73dd69;
+    transition: 0.3s;
+}
+
+.form .forgotPass{
+    text-align: right;
+    margin-right: 34px;
+    color: #ABABAB;
+    display: block;
+    text-decoration: none;
+    font-family: arial;
+    font-size: 11px;
+}
+
+/* .form a:hover{
+    color: blue;
+} */
+
+.register{
+    color: #707070;
+    margin-top:0px;
+    font-family: arial;
+    font-size: 11px;
+    text-align: center;
+}
+
+.register a{
+    color: #707070;
+    text-decoration: none;
+    display: inline;
+}
+
+/* .register a:hover{
+    color: blue;
+} */
+
+/* CSS Cadastro */
+
+.formCad{
+    border-radius: 15px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: -65px;
+    padding: 0px 20px;
+    padding-top: 40px;
+    background: #FFFFFF;
+    border: 1px solid rgba(112, 112, 112, 0.16);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+    padding: 2%!important;
+    margin-bottom: 10%;
+}
+
+.formCad h1{
+    font-size: 25px;
+    color: grey;
+    font-family: arial;
+    text-shadow: 1px 1px 2.5px #d3d3d3;   
+    padding-left: 3%; 
+    padding-top: 2%;
+}
+
+.formCad p{
+    padding-left: 3%; 
+    display: inline-block;
+    padding-top: 2%;
+    letter-spacing: 1px;
+    color: #c7c7c7;
+    font-family: arial;  
+    margin-bottom: 0px!important;
+    font-size: 15px;
+}
+
+.image-logoCad img{
+    max-width: 120px;
+    margin-left: 85%;
+    margin-top: 4%;
+    background: #84DDFF;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+    -webkit-border-radius: 100px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius: 100px;
+    -moz-border-radius-topleft: 0;
+    border-radius: 100px;
+    border-top-left-radius: 0;
+}
+
+.pt1{
+    padding-left: 3%; 
+}
+.pt1, .pt2 {
+    margin-bottom: 7%!important;
+    width: 45%;
+    display: inline-block;
+    float: left;
+    margin: auto;
+}
+
+.pt1, .pt2 input,p{ 
+    font-family: arial;
+    display: block!important;
+    margin-bottom: white;
+}
+
+#select{
+    padding: 3%;
+    width: 87%;
+    border: 1px solid rgba(112, 112, 112, 0.21);
+}
+
+.pt1 p, .pt2 p{
+    letter-spacing: 0.1px!important;
+    padding-left: 0%; 
+    color: rgba(0,0,0,0.4);
+    margin-top:2%;
+    margin-bottom: 2%!important;
+    color: grey;
+}
+
+.pt1 input,.pt2 input{
+    border: 1px solid rgba(112, 112, 112, 0.21);
+    padding: 3%!important;
+    width: 80%;
+}
+
+.formCad form>input{
+    padding: 2.2% 3%;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 2%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+}
+.formCad form> a input{
+    padding: 2.2% 3%;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 2%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+}
+
+.formCad form>a{
+    width: 15%!important;
+}
+
+#data{
+    padding: 2.5%;
+}
+
+#cancelar{
+    background-color: #c9c9c9;
+    border:none;
+    border-radius: 8px;
+    margin-left: 67%;
+    font-size: 15px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+}
+
+#cancelar:hover{
+    background-color: #a0a0a0;
+    transition: 0.3s;
+}
+
+#cadastrar{
+    font-size: 15px;
+    background-color: #84DDFF;
+    border:none;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+} 
+
+#cadastrar:hover{
+    background-color:#73dd69;
+    transition: 0.3s;
+} 
+
+/* CSS Recuperação de Senha*/
+
+.pt1Rec{
+    display: inline-block;
+    width: 50%;
+    margin-left: 30%;
+    margin-top: 3%;
+}
+
+.pt1Rec p{
+    letter-spacing: 0.1px!important;
+    width: 50%;
+    padding: 0!important;
+    margin-bottom: 2%!important;
+    color: grey;
+}
+
+.pt1Rec input{
+    border: 1px solid rgba(112, 112, 112, 0.21);
+    margin-bottom: 6%;
+    width: 65%;
+    padding: 10px;
+}
+
+.botoes{
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+.botoes a input{
+    margin: 0!important;
+    display: inline-block;
+    width: 25%;
+}
+
+#cancelarRec{
+    cursor: pointer;
+    width: 32%;
+    font-weight: bold;
+    color: white;
+    background-color: #c9c9c9;
+    border:none;
+    border-radius: 8px;
+    font-size: 15px;
+    padding: 4%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+}
+
+#cancelarRec:hover{
+    background-color: #a0a0a0;
+    transition: 0.3s;
+}
+
+#cadastrarRec{
+    cursor: pointer;
+    width: 32%;
+    font-weight: bold;
+    color: white;
+    margin-left: 6%!important;
+    padding: 4%;
+    font-size: 15px;
+    background-color: #84DDFF;
+    border:none;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
+} 
+
+#cadastrarRec:hover{
+    background-color:#73dd69;
+    transition: 0.3s;
+}
