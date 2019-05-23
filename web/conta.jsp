@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
-    Usuario usuario = (new UsuarioDAO()).busca(11);
-//    Usuario usuario = (Usuario) request.getAttribute("usarioEncontrado");
+//    Usuario usuario = (new UsuarioDAO()).busca(11);
+    Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
     // A lista de usuários é colocada no contexto da página. Assim o JSTL terá acesso a ela
-    pageContext.setAttribute("usarioEncontrado", usuario);
+//    pageContext.setAttribute("usarioEncontrado", usuario);
 %>
 <html lang="pt-br">
 <head>
@@ -32,17 +32,17 @@
         <div class="menuName"> 
             <p>OlÃ¡,</p>
             <h3>
-                <c:if test="${usuarioEncontrado != null}">
-                    <h2>${usuarioEncontrado.apelido}</h2>
+                <c:if test="${usuarioLogado != null}">
+                    <h2>${usuarioLogado.apelido}</h2>
                 </c:if>
             </h3>
         </div>
         <nav style="clear:both">
             <ul>
-                <a href="feed.jsp"><li><i class="fas fa-home"></i> FEED</li></a>
+                <a href="feed.jsp"><li><i class="fas fa-home"></i>FEED</li></a>
                 <a href="perfil.jsp"><li><i class="fas fa-user"></i>PERFIL</li></a>
-                <a><li id="conta"><i class="fas fa-cog"></i> CONTA</li></a>
-                <a href="index.jsp"><li><i class="fas fa-sign-out-alt"></i>  SAIR</li></a>
+                <a><li id="conta"><i class="fas fa-cog"></i>CONTA</li></a>
+                <a href="/twitter/UsuarioServlet?operacao=6"><li><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
             </ul>
         </nav>
         <div class="logo"><img src="images/monitor-window.png"/></div>
@@ -52,22 +52,22 @@
         <div id="alteraCadastro" class="formCad">
                 <h2>Configurações de conta:</h2>
                 <form action="/twitter/UsuarioServlet?operacao=2" method="post">
-                    <input type="hidden" name="idUsuario" value="${usarioEncontrado.idUsuario}"/>
+                    <input type="hidden" name="idUsuario" value="${usuarioLogado.idUsuario}"/>
                     <div class="pt1">
                         <p>Nome:</p>
-                        <input id="nome"type="text" name="nomeCompleto" required value="${usarioEncontrado.nomeCompleto}">
+                        <input id="nome"type="text" name="nomeCompleto" required value="${usuarioLogado.nomeCompleto}">
                         <p>Data de Nascimento:</p>
-                        <input id="data" type="date" name="dataNascimento" required value="${usarioEncontrado.dataNascimento}">
+                        <input id="data" type="date" name="dataNascimento" required value="${usuarioLogado.dataNascimento}">
                     </div>
                     <div class="pt2">
                         <p>Email:</p>
-                        <input type="email" name="email" id="email" readonly value="${usarioEncontrado.email}">
+                        <input type="email" name="email" id="email" readonly value="${usuarioLogado.email}">
                         <p>Usuário:</p>
-                        <input type="text" name="apelido" id="senha"required value="${usarioEncontrado.apelido}">
+                        <input type="text" name="apelido" id="senha"required value="${usuarioLogado.apelido}">
                         <p>Senha:</p>
-                        <input id="date" type="password" name="senha" required value="${usarioEncontrado.senha}">
+                        <input id="date" type="password" name="senha" required value="${usuarioLogado.senha}">
                         <p>Confirmação de senha:</p>
-                        <input id="date" type="password" name="confSenha" required value="${usarioEncontrado.senha}">
+                        <input id="date" type="password" name="confSenha" required value="${usuarioLogado.senha}">
                     </div>
                     <a href="feed.jsp"><input id="cancelar" type="button" name="cancelar" value="Cancelar"></a>
                     <input id="cadastrar" type="submit" name="enviar" value="Alterar">

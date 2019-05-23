@@ -115,6 +115,40 @@ public class UsuarioDAO {
         } 
     }
     
+    public Usuario buscaPorEmail(String email){
+        try {
+            // Cria o statment que contém a Query de consulta
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM usuario WHERE email = ?");
+            stmt.setString(1, email);
+            // Cria uma varíavel para receber o resultado da Query
+            ResultSet rs = stmt.executeQuery();
+            
+            // Cria usuário encontrado
+            Usuario usuario = null;
+            // Verifica se houve algum retorno
+            if (rs.next()){
+                usuario = new Usuario(
+                        rs.getInt("idUsuario"), 
+                        rs.getString("nomeCompleto"), 
+                        rs.getLong("dataNascimento"), 
+                        rs.getString("apelido"), 
+                        rs.getString("email"), 
+                        rs.getString("senha"));
+            }
+            else{
+                System.out.println("Não há registros para e-mail " + email);
+            }
+            // Encerra o ResultSet
+            rs.close();
+            // Encerra o Statment
+            stmt.close();
+            // Retorna a lista de Usuários do BD
+            return usuario;
+        } catch (SQLException  e) {
+            throw new RuntimeException(e);
+        } 
+    }
+    
     public Usuario buscaLogin(String email, String senha){
         try {
             System.out.println("Login");
@@ -176,11 +210,11 @@ public class UsuarioDAO {
     
     public void alteraSenha(Usuario u){
         try {
-            PreparedStatement stmt = this.conn.prepareStatement("UPDATE usuario "
+            PreparedStatement stmt = this.conn.prepareStatement("UPDATE usuario SET "
                     + "senha = ? "
                     + "WHERE idUsuario = ?");
             stmt.setString(1, u.getSenha());
-            stmt.setString(2, String.valueOf(u.getIdUsuario()));
+            stmt.setInt(2, (u.getIdUsuario()));
             System.out.println(stmt.toString());
             stmt.execute();
             stmt.close();

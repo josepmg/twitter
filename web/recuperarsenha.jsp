@@ -22,7 +22,7 @@
                 <h1>RECUPERAR SENHA</h1>
                 <p>Digite os dados solicitados abaixo para recuperar sua senha!</p>
                 <br>
-                    <form>
+                <form action="/twitter/UsuarioServlet?operacao=7" method="POST">
                         <div class="pt1Rec">
                             <p>E-mail:</p>
                             <input type="email" name="email" required>

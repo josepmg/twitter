@@ -38,7 +38,7 @@ public class UsuarioServlet extends HttpServlet {
                 break;
             case 2:
                 atualizaUsuario(request, response);
-                listaUsuarios(request, response);
+//                listaUsuarios(request, response);
                 break;
             case 3:
                 removeUsuario(request, response);
@@ -50,6 +50,12 @@ public class UsuarioServlet extends HttpServlet {
             case 5:
                 fazLogin(request, response);
                 break;
+            case 6:
+                fazLogout(request, response);
+                break;
+            case 7:
+                alteraSenha(request, response);
+                break;
             default:
                 break;
         }
@@ -59,7 +65,8 @@ public class UsuarioServlet extends HttpServlet {
             throws ServletException, IOException{
         // Cria um novo usuário com os dados dos Form
         Usuario usuario = new Usuario(request.getParameter("nomeCompleto"),
-                Long.parseLong(request.getParameter("dataNascimento")),
+//                Long.parseLong(request.getParameter("dataNascimento")),
+                00000,
                 request.getParameter("apelido"), 
                 request.getParameter("email"), 
                 request.getParameter("senha"));
@@ -71,7 +78,9 @@ public class UsuarioServlet extends HttpServlet {
 
         try {
             usuarioDAO.fechaConexao();
-            listaUsuarios(request,response);
+//            listaUsuarios(request,response);
+            request.getSession().setAttribute("usuarioLogado", usuario);
+            response.sendRedirect("feed.jsp");
 //            request.getRequestDispatcher("/twitter/UsuarioServlet?operacao=1").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,6 +131,8 @@ public class UsuarioServlet extends HttpServlet {
 
         try {
             usuarioDAO.fechaConexao();
+            request.getSession().setAttribute("usuarioLogado", usuario);
+            response.sendRedirect("feed.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -139,12 +150,12 @@ public class UsuarioServlet extends HttpServlet {
         
     }
     
-    private void alteraSenha(HttpServletRequest request, HttpServletResponse response) {
+    private void alteraSenha(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
-        Usuario usuario = new Usuario();
-        usuario.setIdUsuario(Integer.valueOf(request.getParameter("idUsuario")));
-        usuario.setEmail(request.getParameter("email"));
+        // Recupera o usuario da session http
+        Usuario usuario = usuarioDAO.buscaPorEmail(request.getParameter("email"));
         usuario.setSenha(request.getParameter("senha"));
         
         // Chama método para cadastrar usuário
@@ -152,6 +163,7 @@ public class UsuarioServlet extends HttpServlet {
 
         try {
             usuarioDAO.fechaConexao();
+            response.sendRedirect("index.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -165,16 +177,20 @@ public class UsuarioServlet extends HttpServlet {
         );
         
         if (usuario !=  null){
-            System.out.println("Achou");
             HttpSession httpSession = request.getSession();
             // Salva na session
             httpSession.setAttribute("usuarioLogado", usuario);
             // Redireciona
             getServletConfig().getServletContext().getRequestDispatcher("/feed.jsp").forward(request, response);
         } else{
-            // redireciona para login.jsp
-            System.out.println("N achou");
+            response.sendRedirect("index.jsp");
         }
+    }
+    
+    private void fazLogout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        request.getSession().invalidate();
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

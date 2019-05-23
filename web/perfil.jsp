@@ -7,12 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
-    // Recupera usuário que fez a publicação
-    Usuario u = (new UsuarioDAO().busca(11));
-//    Usuario u = (Usuario) request.getAttribute("usuario");
-    // O usuário é colocado no contexto da página. Assim o JSTL terá acesso a ela
-    pageContext.setAttribute("usuarioEncontrado", u);
-    
+    Usuario u = (Usuario) request.getSession().getAttribute("usuarioLogado");
     ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>)(new PublicacaoDAO()).listaPorAutor(u.getIdUsuario());
 //    ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>) request.getAttribute("publicacoes");
     // A lista de usuários é colocada no contexto da página. Assim o JSTL terá acesso a ela
@@ -41,8 +36,8 @@
         <div class="menuName"> 
             <p>Olá,</p>
             <h3>
-                <c:if test="${usuarioEncontrado != null}">
-                    <h2>${usuarioEncontrado.apelido}</h2>
+                <c:if test="${usuarioLogado != null}">
+                    <h2>${usuarioLogado.apelido}</h2>
                 </c:if>
             </h3>
         </div>
@@ -51,7 +46,7 @@
                 <a href="feed.jsp"><li><i class="fas fa-home"></i>FEED</li></a>
                 <a><li  id="perfil"><i class="fas fa-user"></i>PERFIL</li></a>
                 <a href="conta.jsp"><li><i class="fas fa-cog"></i>CONTA</li></a>
-                <a href="index.jsp"><li><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
+                <a href="/twitter/UsuarioServlet?operacao=6"><li><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
             </ul>
         </nav>
         <div class="logo"><img src="images/monitor-window.png"/></div>
@@ -76,7 +71,7 @@
                         <form action="/twitter/PublicacaoServlet?operacao=3" method="post">
                             <input type="text" maxlength="150" name="textoComentario"/>
                             <input type="hidden" name="idPublicacao" value="${p.idPublicacao}"/> 
-                            <input type="hidden" name="idUsuario" value="${usuarioEncontrado.idUsuario}"/>
+                            <input type="hidden" name="idUsuario" value="${usuarioLogado.idUsuario}"/>
                             <input type="submit" value="Comentar">
                         </form>
                         <c:if test="${p.listaComentarios != null}" >

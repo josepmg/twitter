@@ -62,95 +62,106 @@ public class PublicacaoServlet extends HttpServlet {
     
     private void listaPublicacao(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        // Adiciona o usuário
-        Usuario usuario = null;
-        
-        if (request.getAttribute("usuario") != null)
-            usuario = (new UsuarioDAO()).busca(Integer.parseInt((String) request.getAttribute("usuario")));
-        if (request.getParameter("usuario") != null)
-            usuario = (new UsuarioDAO()).busca(Integer.valueOf(request.getParameter("usuario")));
-        request.setAttribute("usuario", usuario);
-        
-        List<Publicacao> publicacaoList = new ArrayList<>();
-        // Recupera publicações de um usuario
-        publicacaoList = (new PublicacaoDAO()).listaPorAutor(usuario.getIdUsuario());
-        
-        // Para cada publicação, recuperará seus comentários
-        for (Publicacao p : publicacaoList){
-            System.out.println("p.id: " + p.getIdPublicacao());
-            p.setListaComentarios((new ComentarioDAO()).listaPorPublicacao(p.getIdPublicacao()));
-        }
-        
-        // Adiciona a lista de publicações 
-        request.setAttribute("publicacoes", publicacaoList);
-       
-        
-        // Troca de tela pelo Dispatcher
-        getServletConfig().getServletContext().getRequestDispatcher("/feed.jsp").forward(request, response);
+       if (request.getSession().getAttribute("usuarioLogado") == null){
+           response.sendRedirect("/index.jsp");
+       } else{
+            // Adiciona o usuário
+            Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+
+            List<Publicacao> publicacaoList = new ArrayList<>();
+            // Recupera publicações de um usuario
+            publicacaoList = (new PublicacaoDAO()).listaPorAutor(usuario.getIdUsuario());
+
+            // Para cada publicação, recuperará seus comentários
+            for (Publicacao p : publicacaoList){
+                System.out.println("p.id: " + p.getIdPublicacao());
+                p.setListaComentarios((new ComentarioDAO()).listaPorPublicacao(p.getIdPublicacao()));
+            }
+
+            // Adiciona a lista de publicações 
+            request.setAttribute("publicacoes", publicacaoList);
+
+
+            // Troca de tela pelo Dispatcher
+            getServletConfig().getServletContext().getRequestDispatcher("/feed.jsp").forward(request, response);
+       }
         
     }
 
     private void removePublicacao(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        // Cria um objeto de acesso ao BD
-        PublicacaoDAO publicacaoDAO = new PublicacaoDAO();
-        // Chama método para cadastrar usuário
-        publicacaoDAO.remove(Integer.valueOf(request.getParameter("idPublicacao")));
+        if (request.getSession().getAttribute("usuarioLogado") == null){
+            response.sendRedirect("/index.jsp");
+        } else{
+            // Cria um objeto de acesso ao BD
+            PublicacaoDAO publicacaoDAO = new PublicacaoDAO();
+            // Chama método para cadastrar usuário
+            publicacaoDAO.remove(Integer.valueOf(request.getParameter("idPublicacao")));
 
-        try {
-            publicacaoDAO.fechaConexao();
-            listaPublicacao(request,response);
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                publicacaoDAO.fechaConexao();
+                listaPublicacao(request,response);
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
     private void criaPublicacao(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
             
-        // Cria um novo usuário com os dados dos Form
-        Publicacao publicacao = new Publicacao(
-                request.getParameter("texto"), 
-                (new UsuarioDAO()).busca(Integer.valueOf(request.getParameter("idUsuario"))),
-                ((new Date()).getTime()));
+        if (request.getSession().getAttribute("usuarioLogado") == null){
+            response.sendRedirect("/index.jsp");
+        } else{
+            // Cria um novo usuário com os dados dos Form
+            Publicacao publicacao = new Publicacao(
+                    request.getParameter("texto"), 
+    //                (new UsuarioDAO()).busca(Integer.valueOf(request.getParameter("idUsuario"))),
+                    (Usuario) request.getSession().getAttribute("usuarioLogado"),
+                    ((new Date()).getTime()));
 
-        // Cria um objeto de acesso ao BD
-        PublicacaoDAO publicacaoDAO = new PublicacaoDAO();
-        // Chama método para cadastrar usuário
-        publicacaoDAO.adiciona(publicacao);
-        try {
-            publicacaoDAO.fechaConexao();
-            request.setAttribute("usuario", String.valueOf((publicacao.getAutor()).getIdUsuario()));
-            listaPublicacao(request,response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            // Cria um objeto de acesso ao BD
+            PublicacaoDAO publicacaoDAO = new PublicacaoDAO();
+            // Chama método para cadastrar usuário
+            publicacaoDAO.adiciona(publicacao);
+            try {
+                publicacaoDAO.fechaConexao();
+    //            request.setAttribute("usuario", String.valueOf((publicacao.getAutor()).getIdUsuario()));
+                listaPublicacao(request,response);
+            } catch (SQLException ex) {
+                Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
     private void criaComentario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
-        // Instancia um novo comentario
-        Comentario comentario = new Comentario(
-                request.getParameter("textoComentario"), 
-                (new Date()).getTime(), 
-                (new UsuarioDAO()).busca(Integer.valueOf(request.getParameter("idUsuario")))
-        );
-        
-        // Recupera publicação
-        Publicacao publicacao = (new PublicacaoDAO()).busca(Integer.valueOf(request.getParameter("idPublicacao")));
-        System.out.println("kkk" + comentario == null);
-        publicacao.adicionaComentario(comentario);
-        System.out.println("ok2");
-        
-        // Cria o comentário no BD
-        ComentarioDAO comentarioDAO = new ComentarioDAO();
-        comentarioDAO.adiciona(comentario, publicacao);
-        try {
-            comentarioDAO.fechaConexao();
-            request.setAttribute("usuario", String.valueOf((publicacao.getAutor()).getIdUsuario()));
-            listaPublicacao(request,response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        if (request.getSession().getAttribute("usuarioLogado") == null){
+            response.sendRedirect("/index.jsp");
+        }else{
+            // Instancia um novo comentario
+            Comentario comentario = new Comentario(
+                    request.getParameter("textoComentario"), 
+                    (new Date()).getTime(), 
+                    (new UsuarioDAO()).busca(Integer.valueOf(request.getParameter("idUsuario")))
+            );
+
+            // Recupera publicação
+            Publicacao publicacao = (new PublicacaoDAO()).busca(Integer.valueOf(request.getParameter("idPublicacao")));
+            System.out.println("kkk" + comentario == null);
+            publicacao.adicionaComentario(comentario);
+            System.out.println("ok2");
+
+            // Cria o comentário no BD
+            ComentarioDAO comentarioDAO = new ComentarioDAO();
+            comentarioDAO.adiciona(comentario, publicacao);
+            try {
+                comentarioDAO.fechaConexao();
+                request.setAttribute("usuario", String.valueOf((publicacao.getAutor()).getIdUsuario()));
+                listaPublicacao(request,response);
+            } catch (SQLException ex) {
+                Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
