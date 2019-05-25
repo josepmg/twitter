@@ -46,6 +46,8 @@ public class PublicacaoDAO {
 
             stmt.execute();
             stmt.close();
+            
+            fechaConexao();
         } catch (SQLException  e) {
             throw new RuntimeException(e);
         }      
@@ -76,6 +78,8 @@ public class PublicacaoDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
+            
+            fechaConexao();
             // Retorna a lista de Usuários do BD
             return publicacaoList;
         } catch (SQLException  e) {
@@ -112,6 +116,8 @@ public class PublicacaoDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
+            
+            fechaConexao();
             // Retorna a lista de Usuários do BD
             return publicacaoList;
         } catch (SQLException  e) {
@@ -144,6 +150,8 @@ public class PublicacaoDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
+            
+            fechaConexao();
             // Retorna a lista de Usuários do BD
             return publicacao;
         } catch (SQLException  e) {
@@ -160,6 +168,8 @@ public class PublicacaoDAO {
             stmt.setInt(1, id);
             stmt.execute();
             stmt.close();
+            
+            fechaConexao();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }   
@@ -171,6 +181,8 @@ public class PublicacaoDAO {
             stmt.setInt(1, idUsuario);
             stmt.execute();
             stmt.close();
+            
+            fechaConexao();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 

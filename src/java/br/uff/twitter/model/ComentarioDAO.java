@@ -34,6 +34,7 @@ public class ComentarioDAO {
 
             stmt.execute();
             stmt.close();
+            fechaConexao();
         } catch (SQLException  e) {
             throw new RuntimeException(e);
         }      
@@ -65,6 +66,8 @@ public class ComentarioDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
+            
+            fechaConexao();
             // Retorna a lista de Usuários do BD
             return comentarioList;
         } catch (SQLException  e) {
@@ -78,6 +81,8 @@ public class ComentarioDAO {
             stmt.setInt(1, idUsuario);
             stmt.execute();
             stmt.close();
+            
+            fechaConexao();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -89,6 +94,8 @@ public class ComentarioDAO {
             stmt.setInt(1, idPublicacao);
             stmt.execute();
             stmt.close();
+            
+            fechaConexao();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 

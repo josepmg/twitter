@@ -2,12 +2,7 @@
 <%@page import="br.uff.twitter.model.Usuario"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%
-//    Usuario usuario = (new UsuarioDAO()).busca(11);
-    Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-    // A lista de usu·rios È colocada no contexto da p·gina. Assim o JSTL ter· acesso a ela
-//    pageContext.setAttribute("usarioEncontrado", usuario);
-%>
+
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8"/>
@@ -30,7 +25,7 @@
     <div class="menu">
         <div class="menuFoto"><img src="images/user.png"/></div>
         <div class="menuName"> 
-            <p>Ol√°,</p>
+            <p>Ol·,</p>
             <h3>
                 <c:if test="${usuarioLogado != null}">
                     <h2>${usuarioLogado.apelido}</h2>
@@ -39,9 +34,9 @@
         </div>
         <nav style="clear:both">
             <ul>
-                <a href="feed.jsp"><li><i class="fas fa-home"></i>FEED</li></a>
-                <a href="perfil.jsp"><li><i class="fas fa-user"></i>PERFIL</li></a>
-                <a><li id="conta"><i class="fas fa-cog"></i>CONTA</li></a>
+                <a href="/twitter/PublicacaoServlet?operacao=4"><li><i class="fas fa-home"></i>FEED</li></a>
+                <a href="/twitter/PublicacaoServlet?operacao=1"><li><i class="fas fa-user"></i>PERFIL</li></a>
+                <a href="/twitter/UsuarioServlet?operacao=3"><li id="conta"><i class="fas fa-cog"></i>CONTA</li></a>
                 <a href="/twitter/UsuarioServlet?operacao=6"><li><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
             </ul>
         </nav>

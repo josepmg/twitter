@@ -8,8 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
     Usuario u = (Usuario) request.getSession().getAttribute("usuarioLogado");
-    ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>)(new PublicacaoDAO()).listaPorAutor(u.getIdUsuario());
-//    ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>) request.getAttribute("publicacoes");
+    ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>) request.getAttribute("publicacoes");
     // A lista de usuários é colocada no contexto da página. Assim o JSTL terá acesso a ela
     pageContext.setAttribute("listaPublicacoes", listaPublicacoes);
 %>
@@ -43,9 +42,9 @@
         </div>
         <nav style="clear:both">
             <ul>
-                <a href="feed.jsp"><li><i class="fas fa-home"></i>FEED</li></a>
-                <a><li  id="perfil"><i class="fas fa-user"></i>PERFIL</li></a>
-                <a href="conta.jsp"><li><i class="fas fa-cog"></i>CONTA</li></a>
+                <a href="/twitter/PublicacaoServlet?operacao=4"><li><i class="fas fa-home"></i>FEED</li></a>
+                <a href="/twitter/PublicacaoServlet?operacao=1"><li  id="perfil"><i class="fas fa-user"></i>PERFIL</li></a>
+                <a href="/twitter/UsuarioServlet?operacao=3"><li><i class="fas fa-cog"></i>CONTA</li></a>
                 <a href="/twitter/UsuarioServlet?operacao=6"><li><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
             </ul>
         </nav>

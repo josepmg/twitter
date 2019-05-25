@@ -46,24 +46,28 @@ public class PublicacaoServlet extends HttpServlet {
                 criaPublicacao(request, response);
                 break;
             case 1:
-                listaPublicacao(request,response);
+                listaPublicacaoUsuario(request,response);
                 break;
             case 2:
                 removePublicacao(request, response);
-                listaPublicacao(request, response);
+                listaPublicacaoUsuario(request, response);
                 break;
             case 3:
                 criaComentario(request, response);
+                break;
+            case 4:
+                listaTodasPublicacoes(request, response);
                 break;
             default:
                 break;
         }
     }
     
-    private void listaPublicacao(HttpServletRequest request, HttpServletResponse response) 
+    private void listaPublicacaoUsuario(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
        if (request.getSession().getAttribute("usuarioLogado") == null){
-           response.sendRedirect("/index.jsp");
+           response.sendRedirect("index.jsp");
+           return;
        } else{
             // Adiciona o usuário
             Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
@@ -80,30 +84,52 @@ public class PublicacaoServlet extends HttpServlet {
 
             // Adiciona a lista de publicações 
             request.setAttribute("publicacoes", publicacaoList);
+            // Troca de tela pelo Dispatcher
+            getServletConfig().getServletContext().getRequestDispatcher("/perfil.jsp").forward(request, response);
+       }
+        
+    }
+    
+    private void listaTodasPublicacoes(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException{
+         if (request.getSession().getAttribute("usuarioLogado") == null){
+            response.sendRedirect("index.jsp");
+            return;
+        } else{
+            ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>)(new PublicacaoDAO()).listaTodos();
+         
+            // Para cada publicação, recuperará seus comentários
+            for (Publicacao p : listaPublicacoes){
+                p.setListaComentarios((new ComentarioDAO()).listaPorPublicacao(p.getIdPublicacao()));
+            }
+
+            // Adiciona a lista de publicações 
+            request.setAttribute("publicacoes", listaPublicacoes);
 
 
             // Troca de tela pelo Dispatcher
             getServletConfig().getServletContext().getRequestDispatcher("/feed.jsp").forward(request, response);
-       }
-        
+        }
     }
 
     private void removePublicacao(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         if (request.getSession().getAttribute("usuarioLogado") == null){
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("index.jsp");
+            return;
         } else{
             // Cria um objeto de acesso ao BD
             PublicacaoDAO publicacaoDAO = new PublicacaoDAO();
             // Chama método para cadastrar usuário
             publicacaoDAO.remove(Integer.valueOf(request.getParameter("idPublicacao")));
 
-            try {
-                publicacaoDAO.fechaConexao();
-                listaPublicacao(request,response);
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            listaPublicacaoUsuario(request,response);
+//            try {
+//                publicacaoDAO.fechaConexao();
+//                listaPublicacao(request,response);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
     }
 
@@ -111,33 +137,39 @@ public class PublicacaoServlet extends HttpServlet {
             throws ServletException, IOException {
             
         if (request.getSession().getAttribute("usuarioLogado") == null){
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("index.jsp");
+            return;
         } else{
+            Usuario usuarioLogado = (new UsuarioDAO()).buscaPorEmail(((Usuario) request.getSession().getAttribute("usuarioLogado")).getEmail());
             // Cria um novo usuário com os dados dos Form
             Publicacao publicacao = new Publicacao(
                     request.getParameter("texto"), 
-    //                (new UsuarioDAO()).busca(Integer.valueOf(request.getParameter("idUsuario"))),
-                    (Usuario) request.getSession().getAttribute("usuarioLogado"),
+                    (new UsuarioDAO()).buscaPorEmail(usuarioLogado.getEmail()),
                     ((new Date()).getTime()));
 
             // Cria um objeto de acesso ao BD
             PublicacaoDAO publicacaoDAO = new PublicacaoDAO();
             // Chama método para cadastrar usuário
             publicacaoDAO.adiciona(publicacao);
-            try {
-                publicacaoDAO.fechaConexao();
-    //            request.setAttribute("usuario", String.valueOf((publicacao.getAutor()).getIdUsuario()));
-                listaPublicacao(request,response);
-            } catch (SQLException ex) {
-                Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+            request.getSession().setAttribute("usuarioLogado", usuarioLogado);
+            listaPublicacaoUsuario(request,response);
+//            try {
+//                publicacaoDAO.fechaConexao();
+//    //            request.setAttribute("usuario", String.valueOf((publicacao.getAutor()).getIdUsuario()));
+//                request.getSession().setAttribute("usuarioLogado", usuarioLogado);
+//                listaPublicacao(request,response);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
     }
     
     private void criaComentario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
         if (request.getSession().getAttribute("usuarioLogado") == null){
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("index.jsp");
+            return;
         }else{
             // Instancia um novo comentario
             Comentario comentario = new Comentario(
@@ -148,20 +180,19 @@ public class PublicacaoServlet extends HttpServlet {
 
             // Recupera publicação
             Publicacao publicacao = (new PublicacaoDAO()).busca(Integer.valueOf(request.getParameter("idPublicacao")));
-            System.out.println("kkk" + comentario == null);
             publicacao.adicionaComentario(comentario);
-            System.out.println("ok2");
 
             // Cria o comentário no BD
             ComentarioDAO comentarioDAO = new ComentarioDAO();
             comentarioDAO.adiciona(comentario, publicacao);
-            try {
-                comentarioDAO.fechaConexao();
-                request.setAttribute("usuario", String.valueOf((publicacao.getAutor()).getIdUsuario()));
-                listaPublicacao(request,response);
-            } catch (SQLException ex) {
-                Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+            listaPublicacaoUsuario(request,response);
+//            try {
+//                comentarioDAO.fechaConexao();
+//                listaPublicacao(request,response);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
         
     }

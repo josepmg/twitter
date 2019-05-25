@@ -10,7 +10,10 @@ import br.uff.twitter.model.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,25 +30,24 @@ import javax.servlet.http.HttpSession;
 public class UsuarioServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         switch(Integer.valueOf(request.getParameter("operacao"))){
             case 0:
                 criaUsuario(request, response);
                 break;
             case 1:
-                listaUsuarios(request,response);
+//                listaUsuarios(request,response);
                 break;
             case 2:
                 atualizaUsuario(request, response);
 //                listaUsuarios(request, response);
                 break;
             case 3:
-                removeUsuario(request, response);
-                listaUsuarios(request, response);
+                trocaTela(request, response);
                 break;
             case 4:
-                buscaUmUsuario(request, response);
+//                buscaUmUsuario(request, response);
                 break;
             case 5:
                 fazLogin(request, response);
@@ -76,79 +78,38 @@ public class UsuarioServlet extends HttpServlet {
         // Chama método para cadastrar usuário
         usuarioDAO.adiciona(usuario);
 
-        try {
-            usuarioDAO.fechaConexao();
-//            listaUsuarios(request,response);
-            request.getSession().setAttribute("usuarioLogado", usuario);
-            response.sendRedirect("feed.jsp");
-//            request.getRequestDispatcher("/twitter/UsuarioServlet?operacao=1").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private void listaUsuarios(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException{
-        List<Usuario> usuariosList = new ArrayList<Usuario>();
-        usuariosList = (new UsuarioDAO()).listaTodos();
-        
-        // Adiciona a lista de usuário 
-        request.setAttribute("usarios", usuariosList);
-        // Troca de tela pelo Dispatcher
-        getServletConfig().getServletContext().getRequestDispatcher("/listaUsuariosJSP.jsp").forward(request, response);
-    }
-    
-    private void removeUsuario(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException{
-        // Cria um objeto de acesso ao BD
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        // Chama método para cadastrar usuário
-        usuarioDAO.remove(Integer.valueOf(request.getParameter("id")));
-
-        try {
-            usuarioDAO.fechaConexao();
-            listaUsuarios(request,response);
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        request.getSession().setAttribute("usuarioLogado", usuario);
+        getServletConfig().getServletContext().getRequestDispatcher("/feed.jsp").forward(request, response);
     }
     
     private void atualizaUsuario(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException{
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
+            throws ServletException, IOException, ParseException{
+        if (request.getSession().getAttribute("usuarioLogado") == null){
+           response.sendRedirect("index.jsp");
+           return;
+       } else{
         
-        Usuario usuario = new Usuario(
-                request.getParameter("nomeCompleto"),
-                Long.parseLong(request.getParameter("dataNascimento")),
-                request.getParameter("apelido"), 
-                request.getParameter("email"), 
-                request.getParameter("senha"));
-        usuario.setIdUsuario(Integer.valueOf(request.getParameter("idUsuario")));
-        
-        // Chama método para cadastrar usuário
-        usuarioDAO.altera(usuario);
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        try {
-            usuarioDAO.fechaConexao();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = dateFormat.parse(request.getParameter("dataNascimento"));
+
+            Usuario usuario = new Usuario(
+                    request.getParameter("nomeCompleto"),
+                    date.getTime(),
+                    request.getParameter("apelido"), 
+                    request.getParameter("email"), 
+                    request.getParameter("senha"));
+            usuario.setIdUsuario(Integer.valueOf(request.getParameter("idUsuario")));
+
+            // Chama método para cadastrar usuário
+            usuarioDAO.altera(usuario);
+
             request.getSession().setAttribute("usuarioLogado", usuario);
             response.sendRedirect("feed.jsp");
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }   
-    
-    private void buscaUmUsuario(HttpServletRequest request, HttpServletResponse response) 
-        throws ServletException, IOException{
-        
-        Usuario usuario = new Usuario();
-        usuario = (new UsuarioDAO()).busca(Integer.valueOf(request.getParameter("id")));
-        
-        request.setAttribute("usarioEncontrado", usuario);
-        // Troca de tela pelo Dispatcher
-        getServletConfig().getServletContext().getRequestDispatcher("/editaUsuarioJSP.jsp").forward(request, response);
-        
-    }
     
     private void alteraSenha(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -161,12 +122,7 @@ public class UsuarioServlet extends HttpServlet {
         // Chama método para cadastrar usuário
         usuarioDAO.alteraSenha(usuario);
 
-        try {
-            usuarioDAO.fechaConexao();
-            response.sendRedirect("index.jsp");
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        response.sendRedirect("index.jsp");
     }
     
     private void fazLogin(HttpServletRequest request, HttpServletResponse response)
@@ -181,9 +137,9 @@ public class UsuarioServlet extends HttpServlet {
             // Salva na session
             httpSession.setAttribute("usuarioLogado", usuario);
             // Redireciona
-            getServletConfig().getServletContext().getRequestDispatcher("/feed.jsp").forward(request, response);
+            getServletConfig().getServletContext().getRequestDispatcher("/PublicacaoServlet?operacao=4").forward(request, response);
         } else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/index.jsp");
         }
     }
     
@@ -191,6 +147,16 @@ public class UsuarioServlet extends HttpServlet {
             throws ServletException, IOException{
         request.getSession().invalidate();
         response.sendRedirect("index.jsp");
+    }
+    
+    private void trocaTela(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException{
+        if (request.getSession().getAttribute("usuarioLogado") == null){
+           response.sendRedirect("index.jsp");
+           return;
+       } else{
+            response.sendRedirect("conta.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -205,7 +171,11 @@ public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -219,7 +189,11 @@ public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

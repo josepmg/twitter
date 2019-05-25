@@ -7,13 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
-    // Recupera usuário que fez a publicação
-//    Usuario u = (Usuario) pageContext.getSession().getAttribute("usuarioLogado");
-    // O usuário é colocado no contexto da página. Assim o JSTL terá acesso a ela
-//    pageContext.setAttribute("usuarioEncontrado", u);
-    
-    ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>)(new PublicacaoDAO()).listaTodos();
-//    ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>) request.getAttribute("publicacoes");
+    ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>)request.getAttribute("publicacoes");
     // A lista de usuários é colocada no contexto da página. Assim o JSTL terá acesso a ela
     pageContext.setAttribute("listaPublicacoes", listaPublicacoes);
 %>
@@ -33,7 +27,6 @@
 </head>
 
 <body>
-
     <!-- menu principal feed  -->
     <div class="menu">
         <div class="menuFoto"><img src="images/user.png"/></div>
@@ -47,9 +40,9 @@
         </div>
         <nav style="clear:both">
             <ul>
-                <a><li id="feed"><i class="fas fa-home"></i>FEED</li></a>
-                <a href="perfil.jsp"><li><i class="fas fa-user"></i>PERFIL</li></a>
-                <a href="conta.jsp"><li><i class="fas fa-cog"></i>CONTA</li></a>
+                <a href="/twitter/PublicacaoServlet?operacao=4"><li id="feed"><i class="fas fa-home"></i>FEED</li></a>
+                <a href="/twitter/PublicacaoServlet?operacao=1"><li><i class="fas fa-user"></i>PERFIL</li></a>
+                <a href="/twitter/UsuarioServlet?operacao=3"><li><i class="fas fa-cog"></i>CONTA</li></a>
                 <a href="/twitter/UsuarioServlet?operacao=6"><li><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
             </ul>
         </nav>

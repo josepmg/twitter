@@ -46,6 +46,7 @@ public class UsuarioDAO {
 
             stmt.execute();
             stmt.close();
+            fechaConexao();
         } catch (SQLException  e) {
             throw new RuntimeException(e);
         }      
@@ -74,6 +75,8 @@ public class UsuarioDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
+            // Fecha conexão
+            fechaConexao();
             // Retorna a lista de Usuários do BD
             return usuariosList;
         } catch (SQLException  e) {
@@ -101,13 +104,12 @@ public class UsuarioDAO {
                         rs.getString("email"), 
                         rs.getString("senha"));
             }
-            else{
-                System.out.println("Não há registros para id " + id);
-            }
             // Encerra o ResultSet
             rs.close();
             // Encerra o Statment
             stmt.close();
+            
+            fechaConexao();
             // Retorna a lista de Usuários do BD
             return usuario;
         } catch (SQLException  e) {
@@ -135,13 +137,12 @@ public class UsuarioDAO {
                         rs.getString("email"), 
                         rs.getString("senha"));
             }
-            else{
-                System.out.println("Não há registros para e-mail " + email);
-            }
             // Encerra o ResultSet
             rs.close();
             // Encerra o Statment
             stmt.close();
+            
+            fechaConexao();
             // Retorna a lista de Usuários do BD
             return usuario;
         } catch (SQLException  e) {
@@ -151,8 +152,6 @@ public class UsuarioDAO {
     
     public Usuario buscaLogin(String email, String senha){
         try {
-            System.out.println("Login");
-            System.out.println(email + ":" + senha);
             // Cria o statment que contém a Query de consulta
             PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM usuario WHERE "
                     + "	email = ? and "
@@ -178,6 +177,8 @@ public class UsuarioDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
+            
+            fechaConexao();
             // Retorna a lista de Usuários do BD
             return usuario;
         } catch (SQLException  e) {
@@ -203,6 +204,7 @@ public class UsuarioDAO {
             System.out.println(stmt.toString());
             stmt.execute();
             stmt.close();
+            fechaConexao();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -218,6 +220,7 @@ public class UsuarioDAO {
             System.out.println(stmt.toString());
             stmt.execute();
             stmt.close();
+            fechaConexao();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -233,6 +236,7 @@ public class UsuarioDAO {
             stmt.setInt(1, id);
             stmt.execute();
             stmt.close();
+            fechaConexao();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }   
