@@ -17,6 +17,7 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 	<title>Feed - Twitter</title>
     <link href="css/style2.css" rel="stylesheet"/>
+    <link href="css/responsive.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -41,22 +42,21 @@
         <nav style="clear:both">
             <ul>
                 <a href="/twitter/PublicacaoServlet?operacao=4"><li id="feed"><i class="fas fa-home"></i>FEED</li></a>
-                <a href="/twitter/PublicacaoServlet?operacao=1"><li><i class="fas fa-user"></i>PERFIL</li></a>
-                <a href="/twitter/UsuarioServlet?operacao=3"><li><i class="fas fa-cog"></i>CONTA</li></a>
-                <a href="/twitter/UsuarioServlet?operacao=6"><li><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
+                <a href="/twitter/PublicacaoServlet?operacao=1"><li id="not-selected"><i class="fas fa-user"></i>PERFIL</li></a>
+                <a href="/twitter/UsuarioServlet?operacao=3"><li id="not-selected"><i class="fas fa-cog"></i>CONTA</li></a>
+                <a href="/twitter/UsuarioServlet?operacao=6"><li id="not-selected"><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
             </ul>
         </nav>
-        <div class="logo"><img src="images/monitor-window.png"/></div>
     </div>
     <div class="feed">
         <!-- Parte para usuario logado escrever postagem -->
         <div class="texting">
-            <div class="edit"></div>
+           <!-- <h3>No que está pensando?</h3> -->
             <div class="text">
                 <form action="/twitter/PublicacaoServlet?operacao=0" method="post">
-                    <textarea placeholder="Type your text" name="texto" maxlength="150"></textarea>
+                    <textarea placeholder="No que está pensando?" name="texto" maxlength="149"></textarea>
                     <input type="hidden" name="idUsuario" value="${usuarioLogado}"/>
-                    <button class="botaoSend">
+                    <button class="botaoSend" style="clear:both">
                         Enviar <i class="fa fa-paper-plane" aria-hidden="true"></i>
                     </button>
                 </form>
@@ -67,30 +67,36 @@
         <c:if test="${listaPublicacoes != null}" >
             <jsp:useBean id="dateObject" class="java.util.Date"/>
             <c:forEach var="p" items="${listaPublicacoes}">      
-                <div class="tweet">
-                    <div class="tweetPt1">
+                <div class="tweet"  style="clear:both">
+                    <div class="tweetPt1"  style="clear:both">
                         <h2>${p.autor.apelido}</h2>
-                        <div class="tweetFoto"><img src="images/user.png"/></div>
-                        <div class="tweetMsg">
+                        <div class="tweetFoto"  style="clear:both"><img src="images/user.png"/></div>
+                        <div class="tweetMsg"  style="clear:both">
                             ${p.texto}
                         </div>
                     </div>
-                    <div class="tweetpt2">
+                    <div class="tweetpt2"  style="clear:both">
+                        <h2> Comentários </h2>
                         <form action="/twitter/PublicacaoServlet?operacao=3" method="post">
-                            <input type="text" maxlength="150" name="textoComentario"/>
+                            <textarea type="text" maxlength="150" name="textoComentario"/></textarea>
                             <input type="hidden" name="idPublicacao" value="${p.idPublicacao}"/> 
                             <input type="hidden" name="idUsuario" value="${usuarioLogado.idUsuario}"/>
-                            <input type="submit" value="Comentar">
+                            <input type="submit" value="Comentar" class="coment">
                         </form>
-                        <c:if test="${p.listaComentarios != null}" >
-                            <c:forEach var="c" items="${p.listaComentarios}">
-                                <jsp:setProperty name="dateObject" property="time" value="${c.dataComentario}" />
-                                ${c.texto} - ${c.autor.nomeCompleto} às 
-                                <fmt:formatDate value="${dateObject }" pattern="dd/MM/yyyy kk:mm" />
-                                <br/>
-                            </c:forEach>
-                        </c:if>
-                        <img id="reply"src="images/reply.png"/> 12
+                        <div class="comentarios">
+                            <c:if test="${p.listaComentarios != null}" >
+                                <div class="comentario-section">
+                                    <c:forEach var="c" items="${p.listaComentarios}">
+                                        <p>
+                                                <jsp:setProperty name="dateObject" property="time" value="${c.dataComentario}" />
+                                                ${c.texto} - ${c.autor.nomeCompleto} às 
+                                                <fmt:formatDate value="${dateObject }" pattern="dd/MM/yyyy kk:mm" />
+                                                <br/>
+                                        </p>
+                                     </c:forEach>
+                                </div>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </c:forEach>

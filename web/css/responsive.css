@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30/05/2019, 18:13:20
+    Author     : Bárbara
+    Resolução do projetor: 1024x768
+*/
+
+
+@media screen and (max-width: 400px) {
+    /* 2 - INDEX */
+    #principal { max-width: 400px;}
+    .image-logo {margin: auto; margin-top: 10%; }
+    /* 3 - CADASTRO */
+    .image-logoCad img{ margin-left: 38%; margin-top: 4%;}
+    .formCad h1{ margin-top: 20%; font-size: 28px; text-align: center;}
+    .formCad p { margin-top: 2%; margin-left: 3%; font-size: 12px;}
+    .pt1, .pt2 { margin-left: 2%; }
+    .pt1 p{margin-left: 0px;}
+    .pt2 p{margin-top: 3px; margin-left: 0px; padding-bottom: 1px;}
+    .p2 input{height: 30px;}
+    .pt1 p, .pt2 p{ font-size: 12px; }
+    #cancelar { margin-left: 40%; border-radius: 3px; padding: 13px; margin-bottom: 5%;}
+    #cadastrar{ border-radius: 3px; padding: 13px; margin-bottom: 5%;}
+}
+
+@media screen and (max-width: 800px) {
+    /* 2 - INDEX */
+    #principal { max-width: 400px;}
+    .image-logo {margin: auto; margin-top: 25%; }
+     /* 3 - CADASTRO */
+    .image-logoCad img{ margin-left: 38%; margin-top: 4%;}
+    .formCad h1{ margin-top: 20%; font-size: 28px; text-align: center;}
+    .formCad p { margin-top: 2%; margin-left: 3%; font-size: 12px;}
+    .pt1, .pt2 { margin-left: 2%; }
+    .pt1 p{margin-left: 0px;}
+    .pt2 p{margin-top: 3px; margin-left: 0px; padding-bottom: 1px;}
+    .p2 input{height: 30px;}
+    .pt1 p, .pt2 p{ font-size: 12px; }
+    #cancelar { margin-left: 40%; border-radius: 3px; padding: 13px; margin-bottom: 5%;}
+    #cadastrar{ border-radius: 3px; padding: 13px; margin-bottom: 5%;}
+    /*5 - FEED */
+    .menuFoto {width: 45%; margin-top: 35%; height: 10.5%; }
+    .menuName {font-size: 14px;}
+    .fas {font-size: 14px;}
+    #not-selected, #feed, #perfil, #conta {font-size: 11px;}
+    .texting { width: 70%; margin-left: 15%}
+    .text textarea{ height: 50%; }
+    .tweet {width: 70%; margin-left: 15%;}
+    /* 7 - CONTA */
+    #cancelar { margin-left: 60%; border-radius: 3px; padding: 13px; margin-bottom: 5%;}
+    #cadastrar{ border-radius: 3px; padding: 13px; margin-bottom: 5%;}
+    .pt1, .pt2 { margin-left: 3.5%; }
+    .formCad h2{ margin-left: 6%; font-size: 25px;}
+}
+
+@media screen and (max-width: 1024px) {
+    /*5 - FEED */
+    .menuFoto{ margin-left: 27%;}
+    
+}
+

@@ -18,6 +18,7 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 	<title>Perfil - Twitter</title>
     <link href="css/style2.css" rel="stylesheet"/>
+    <link href="css/responsive.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -42,13 +43,12 @@
         </div>
         <nav style="clear:both">
             <ul>
-                <a href="/twitter/PublicacaoServlet?operacao=4"><li><i class="fas fa-home"></i>FEED</li></a>
-                <a href="/twitter/PublicacaoServlet?operacao=1"><li  id="perfil"><i class="fas fa-user"></i>PERFIL</li></a>
-                <a href="/twitter/UsuarioServlet?operacao=3"><li><i class="fas fa-cog"></i>CONTA</li></a>
-                <a href="/twitter/UsuarioServlet?operacao=6"><li><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
+                <a href="/twitter/PublicacaoServlet?operacao=4"><li id="not-selected"><i class="fas fa-home"></i>FEED</li></a>
+                <a href="/twitter/PublicacaoServlet?operacao=1"><li id="perfil"><i class="fas fa-user"></i>PERFIL</li></a>
+                <a href="/twitter/UsuarioServlet?operacao=3"><li id="not-selected"><i class="fas fa-cog"></i>CONTA</li></a>
+                <a href="/twitter/UsuarioServlet?operacao=6"><li id="not-selected"><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
             </ul>
         </nav>
-        <div class="logo"><img src="images/monitor-window.png"/></div>
     </div>
     <div style="background-image: none"class="feed">
         <div class="perfil">
