@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-	<title>RecuperaÃ§Ã£o de senha - Twitter</title>
+	<title>Recuperação de senha - Twitter</title>
     <link href="css/style.css" rel="stylesheet"/>
      <link href="css/responsive.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
@@ -31,10 +31,8 @@
                             <input type="password" name="senha" required>
                             <p>Confirme a senha:</p>
                             <input type="password" name="confirmasenha" required>
-                            <div class="botoes">
                                 <a href="index.jsp"><input id="cancelarRec" type="button" name="cancelar" value="Cancelar"></a>
                                 <a href="#"><input id="cadastrarRec" type="submit" name="enviar" value="Recuperar"></a>
-                            </div>
                         </div>
                 </form>
 

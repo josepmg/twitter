@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
     Usuario u = (Usuario) request.getSession().getAttribute("usuarioLogado");
     ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>) request.getAttribute("publicacoes");
@@ -14,7 +15,7 @@
 %>
 <html lang="pt-br">
 <head>
-	<meta charset="utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 	<title>Perfil - Twitter</title>
     <link href="css/style2.css" rel="stylesheet"/>
@@ -41,6 +42,7 @@
                 </c:if>
             </h3>
         </div>
+        <div class="linha"></div>
         <nav style="clear:both">
             <ul>
                 <a href="/twitter/PublicacaoServlet?operacao=4"><li id="not-selected"><i class="fas fa-home"></i>FEED</li></a>
@@ -50,38 +52,65 @@
             </ul>
         </nav>
     </div>
-    <div style="background-image: none"class="feed">
+    <div class="feed">
         <div class="perfil">
-            <h2>Meu Perfil!</h2>
+            <c:if test="${usuarioLogado != null}">
+                    <h2>@${usuarioLogado.apelido}</h2>
+                    <p>${usuarioLogado.nomeCompleto}</p>
+                    
+                    <div class="publicacoes">
+                        <center>
+                        <k>
+                            <c:if test="${listaPublicacoes != null}" >
+                                <b>${fn:length(listaPublicacoes)}</b>
+                            </c:if>
+                        
+                        Publicações</k>
+                        </center>
+                    </div>
+                </c:if>
+                              
         </div>
-        <!-- Lista de postagens ordenadas de forma decrescente -->
+          <!-- Lista de postagens ordenadas de forma decrescente -->
         <c:if test="${listaPublicacoes != null}" >
             <jsp:useBean id="dateObject" class="java.util.Date"/>
             <c:forEach var="p" items="${listaPublicacoes}">      
-                <div class="tweet">
-                    <div class="tweetPt1">
-                        <h2>${p.autor.apelido}</h2>
-                        <div class="tweetFoto"><img src="images/user.png"/></div>
-                        <div class="tweetMsg">
-                            ${p.texto}
+                <div class="tweet"  style="clear:both">
+                    <div class="tweetPt1"  style="clear:both">
+                        <div class="clearfix"></div>
+                        <div class="tweetFoto"  style="clear:both"><img src="images/user02.png"/></div>
+                        <div class="tweetMsg"  style="clear:both">
+                            <h2>${p.autor.apelido}</h2>
+                            <p> ${p.texto}</p>
                         </div>
                     </div>
-                    <div class="tweetpt2">
-                        <form action="/twitter/PublicacaoServlet?operacao=3" method="post">
-                            <input type="text" maxlength="150" name="textoComentario"/>
-                            <input type="hidden" name="idPublicacao" value="${p.idPublicacao}"/> 
-                            <input type="hidden" name="idUsuario" value="${usuarioLogado.idUsuario}"/>
-                            <input type="submit" value="Comentar">
-                        </form>
-                        <c:if test="${p.listaComentarios != null}" >
-                            <c:forEach var="c" items="${p.listaComentarios}">
-                                <jsp:setProperty name="dateObject" property="time" value="${c.dataComentario}" />
-                                ${c.texto} - ${c.autor.nomeCompleto} às 
-                                <fmt:formatDate value="${dateObject }" pattern="dd/MM/yyyy kk:mm" />
-                                <br/>
-                            </c:forEach>
-                        </c:if>
-                        <img id="reply"src="images/reply.png"/> 12
+                      <!--  <div class="divisoriaCinza"></div>-->
+                        <div class="comentar">
+                            <form action="/twitter/PublicacaoServlet?operacao=3" method="post">
+                                <input type="text" maxlength="150" name="textoComentario"/></textarea>
+                                <input type="hidden" name="idPublicacao" value="${p.idPublicacao}"/> 
+                                <input type="hidden" name="idUsuario" value="${usuarioLogado.idUsuario}"/>
+                                <input type="submit" value="Comentar" class="coment">
+                            </form>
+                        </div>
+                        <div class="clearfix"></div> 
+                        <div class="divisoriaVerde"></div>
+                        <div class="tweetpt2">
+                            <div class="comentarios">
+                                <h2> Comentários </h2>
+                                <c:if test="${p.listaComentarios != null}" >
+                                    <div class="comentario-section">
+                                        <c:forEach var="c" items="${p.listaComentarios}">
+                                            <p>
+                                                    <jsp:setProperty name="dateObject" property="time" value="${c.dataComentario}" />
+                                                    ${c.texto} - ${c.autor.nomeCompleto} às 
+                                                    <fmt:formatDate value="${dateObject }" pattern="dd/MM/yyyy kk:mm" />
+                                                    <br/>
+                                            </p>
+                                         </c:forEach>
+                                    </div>
+                                </c:if>
+                            </div>
                     </div>
                 </div>
             </c:forEach>

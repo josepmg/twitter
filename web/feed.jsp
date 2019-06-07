@@ -13,7 +13,7 @@
 %>
 <html lang="pt-br">
 <head>
-	<meta charset="utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 	<title>Feed - Twitter</title>
     <link href="css/style2.css" rel="stylesheet"/>
@@ -21,16 +21,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
-
-   
-</head>
+  
+  </head>
 
 <body>
     <!-- menu principal feed  -->
     <div class="menu">
-        <div class="menuFoto"><img src="images/user.png"/></div>
+        <div class="menuFoto"><img src="images/user04.png"/></div>
         <div class="menuName"> 
             <p>Olá,</p>
             <h3>
@@ -39,6 +36,7 @@
                 </c:if>
             </h3>
         </div>
+        <div class="linha"></div>
         <nav style="clear:both">
             <ul>
                 <a href="/twitter/PublicacaoServlet?operacao=4"><li id="feed"><i class="fas fa-home"></i>FEED</li></a>
@@ -56,9 +54,11 @@
                 <form action="/twitter/PublicacaoServlet?operacao=0" method="post">
                     <textarea placeholder="No que está pensando?" name="texto" maxlength="149"></textarea>
                     <input type="hidden" name="idUsuario" value="${usuarioLogado}"/>
-                    <button class="botaoSend" style="clear:both">
+                    <div class="clearfix"></div>
+                    <button class="botaoSend">
                         Enviar <i class="fa fa-paper-plane" aria-hidden="true"></i>
                     </button>
+                    <div class="clearfix"></div>
                 </form>
             </div>
         </div>
@@ -69,34 +69,40 @@
             <c:forEach var="p" items="${listaPublicacoes}">      
                 <div class="tweet"  style="clear:both">
                     <div class="tweetPt1"  style="clear:both">
-                        <h2>${p.autor.apelido}</h2>
-                        <div class="tweetFoto"  style="clear:both"><img src="images/user.png"/></div>
+                        <div class="clearfix"></div>
+                        <div class="tweetFoto"  style="clear:both"><img src="images/user02.png"/></div>
                         <div class="tweetMsg"  style="clear:both">
-                            ${p.texto}
+                            <h2>${p.autor.apelido}</h2>
+                            <p> ${p.texto}</p>
                         </div>
                     </div>
-                    <div class="tweetpt2"  style="clear:both">
-                        <h2> Comentários </h2>
-                        <form action="/twitter/PublicacaoServlet?operacao=3" method="post">
-                            <textarea type="text" maxlength="150" name="textoComentario"/></textarea>
-                            <input type="hidden" name="idPublicacao" value="${p.idPublicacao}"/> 
-                            <input type="hidden" name="idUsuario" value="${usuarioLogado.idUsuario}"/>
-                            <input type="submit" value="Comentar" class="coment">
-                        </form>
-                        <div class="comentarios">
-                            <c:if test="${p.listaComentarios != null}" >
-                                <div class="comentario-section">
-                                    <c:forEach var="c" items="${p.listaComentarios}">
-                                        <p>
-                                                <jsp:setProperty name="dateObject" property="time" value="${c.dataComentario}" />
-                                                ${c.texto} - ${c.autor.nomeCompleto} às 
-                                                <fmt:formatDate value="${dateObject }" pattern="dd/MM/yyyy kk:mm" />
-                                                <br/>
-                                        </p>
-                                     </c:forEach>
-                                </div>
-                            </c:if>
+                      <!--  <div class="divisoriaCinza"></div>-->
+                        <div class="comentar">
+                            <form action="/twitter/PublicacaoServlet?operacao=3" method="post">
+                                <input type="text" maxlength="150" name="textoComentario"/></textarea>
+                                <input type="hidden" name="idPublicacao" value="${p.idPublicacao}"/> 
+                                <input type="hidden" name="idUsuario" value="${usuarioLogado.idUsuario}"/>
+                                <input type="submit" value="Comentar" class="coment">
+                            </form>
                         </div>
+                        <div class="clearfix"></div> 
+                        <div class="divisoriaVerde"></div>
+                        <div class="tweetpt2">
+                            <div class="comentarios">
+                                <h2> Comentários </h2>
+                                <c:if test="${p.listaComentarios != null}" >
+                                    <div class="comentario-section">
+                                        <c:forEach var="c" items="${p.listaComentarios}">
+                                            <p>
+                                                    <jsp:setProperty name="dateObject" property="time" value="${c.dataComentario}" />
+                                                    ${c.texto} - ${c.autor.nomeCompleto} às 
+                                                    <fmt:formatDate value="${dateObject }" pattern="dd/MM/yyyy kk:mm" />
+                                                    <br/>
+                                            </p>
+                                         </c:forEach>
+                                    </div>
+                                </c:if>
+                            </div>
                     </div>
                 </div>
             </c:forEach>

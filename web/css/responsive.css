@@ -35,21 +35,27 @@ and open the template in the editor.
     .image-logoCad img{ margin-left: 38%; margin-top: 4%;}
     .formCad h1{ margin-top: 20%; font-size: 28px; text-align: center;}
     .formCad p { margin-top: 2%; margin-left: 3%; font-size: 12px;}
-    .pt1, .pt2 { margin-left: 2%; }
-    .pt1 p{margin-left: 0px;}
-    .pt2 p{margin-top: 3px; margin-left: 0px; padding-bottom: 1px;}
-    .p2 input{height: 30px;}
-    .pt1 p, .pt2 p{ font-size: 12px; }
-    #cancelar { margin-left: 40%; border-radius: 3px; padding: 13px; margin-bottom: 5%;}
-    #cadastrar{ border-radius: 3px; padding: 13px; margin-bottom: 5%;}
+    .pt1{ margin-left: 2%; width: 80%; }
+    .pt1 input{ width: 100%; padding: 15px;}
+    .pt1 p{margin-left: 0px;font-size: 12px; }
+    #cancelar {margin-left: 22% !important;}
+    /* 4 - RECUPERAR SENHA */ 
+    .pt1Rec {margin-left: 7%; width: 76%;}
+    .pt1Rec p{margin-left: 0%; font-size: 14px; width: 60%;}
+    .pt1Rec input{ width: 100%; padding: 15px;
+     #cancelarRec {margin-left: 25% !important;}
     /*5 - FEED */
     .menuFoto {width: 45%; margin-top: 35%; height: 10.5%; }
-    .menuName {font-size: 14px;}
+    .menuName {font-size: 14px; margin-bottom: -35px;}
+    .menuName h2{font-size: 16px;}
     .fas {font-size: 14px;}
     #not-selected, #feed, #perfil, #conta {font-size: 11px;}
-    .texting { width: 70%; margin-left: 15%}
-    .text textarea{ height: 50%; }
+    .texting { width: 75%; margin-left: 15%}
+    .botaoSend { margin-left: 72%; padding: 10px;}
+    .comentar { margin-left: 10%; }
     .tweet {width: 70%; margin-left: 15%;}
+    /* 6 - PERFIL */
+    .perfil {width: 60%; margin-left: 20%;}
     /* 7 - CONTA */
     #cancelar { margin-left: 60%; border-radius: 3px; padding: 13px; margin-bottom: 5%;}
     #cadastrar{ border-radius: 3px; padding: 13px; margin-bottom: 5%;}
@@ -61,5 +67,4 @@ and open the template in the editor.
     /*5 - FEED */
     .menuFoto{ margin-left: 27%;}
     
-}
-
+};

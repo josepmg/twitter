@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="pt-br">
 <head>
-	<meta charset="utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 	<title>Início - Twitter</title>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
@@ -18,7 +18,7 @@
         <div class="image-logo">
                 <img src="images/monitor-window.png"/>
             </div>
-            <!-- formulÃ¡rio -->
+            <!-- formulário -->
             <div class="form">
                 <form action="/twitter/UsuarioServlet?operacao=5" method="POST">
                     <input name="email" type="email" required placeholder="E-mail" id="user">

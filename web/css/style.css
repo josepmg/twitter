@@ -13,6 +13,26 @@ body {
     background-position-x: 35px;
 }
 
+
+a {
+    text-decoration: none!important;
+}
+
+::-moz-selection { background: #FA7268; color: white;}
+::selection { background: #FA7268; color: white;}
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+} 
+
 /******************************************************************************************************************/
 
 /* 2 - INDEX */
@@ -146,7 +166,7 @@ body {
 
 .formCad{
     border-radius: 15px;
-    max-width: 80%;
+    width: 80%;
     margin: 0 auto;
     margin-top: -65px;
     padding: 0px 20px;
@@ -192,11 +212,8 @@ body {
     border-top-left-radius: 0;
 }
 
-.pt1, .pt2{
+.pt1{
     padding-left: 3%; 
-}
-
-.pt1 {
     margin-bottom: 7%!important;
     width: 45%;
     display: inline-block;
@@ -204,9 +221,10 @@ body {
     margin: auto;
 }
 
-.pt1, .pt2 input,p{ 
+.pt1 input,p{ 
     font-family: arial;
     display: block!important;
+    margin-bottom: white;
 }
 
 #select{
@@ -215,7 +233,7 @@ body {
     border: 1px solid rgba(112, 112, 112, 0.21);
 }
 
-.pt1 p, .pt2 p{
+.pt1 p{
     letter-spacing: 0.1px!important;
     padding-left: 0%; 
     color: rgba(0,0,0,0.4);
@@ -224,7 +242,7 @@ body {
     color: grey;
 }
 
-.pt1 input,.pt2 input{
+.pt1 input{
     border: 1px solid rgba(112, 112, 112, 0.21);
     padding: 3%!important;
     width: 80%;
@@ -254,6 +272,7 @@ body {
 }
 
 #cancelar{
+    color: white;
     background-color: #c9c9c9;
     border:none;
     border-radius: 8px;
@@ -268,6 +287,7 @@ body {
 }
 
 #cadastrar{
+    color: white;
     font-size: 15px;
     background-color: #84DDFF;
     border:none;
@@ -279,7 +299,6 @@ body {
     background-color:#73dd69;
     transition: 0.3s;
 } 
-
 
 /******************************************************************************************************************/
 
@@ -319,14 +338,13 @@ body {
 
 #cancelarRec{
     cursor: pointer;
-    width: 32%;
     font-weight: bold;
     color: white;
     background-color: #c9c9c9;
     border:none;
     border-radius: 8px;
     font-size: 15px;
-    padding: 4%;
+    padding: 15px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
 }
 
@@ -337,11 +355,9 @@ body {
 
 #cadastrarRec{
     cursor: pointer;
-    width: 32%;
     font-weight: bold;
     color: white;
-    margin-left: 6%!important;
-    padding: 4%;
+    padding: 15px;
     font-size: 15px;
     background-color: #84DDFF;
     border:none;
@@ -357,277 +373,3 @@ body {
 
 /******************************************************************************************************************/
 
-/* 5 - FEED */
-
-
-.menu{
-    width: 20%;
-    height: 100vh!important;
-    background-color: #FA7268;
-    position: fixed;
-}
-
-.menuFoto{
-    margin-left: 37%;
-    width: 100px;
-    height: 100px;
-    margin-top: 15%;
-    border-radius: 100px;
-}
-
-.menuFoto img{
-    width:100%;
-}
-
-.menuName{
-    width: 85%;
-    height:100px;
-    text-align: center;
-    margin-left: 7%;
-    font-size: 18px;
-    color:white;
-    text-shadow: 1px 1px 5px black;
-    border-bottom: 1px solid white;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.menuName p{
-    font-family: 'Quicksand', sans-serif;
-    margin-top: 10%;
-}
-
-.menuName a{
-    text-decoration: none;
-}
-
-.menuName a:hover{
-    text-decoration: none;
-}
-
-.menu > nav ul a li{
-    font-family: 'Quicksand', sans-serif;
-    margin-left: 15%;
-    margin-top: 5%;
-    list-style: none!important;
-    width: 50%;
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 3.5% 10%;
-    padding-left: 10%;
-    border: 0.5px solid rgba(0,0,0,0.2);
-}
-
-#feed, #conta, #perfil{
-    background-color: #FA7268;
-    color:white;
-    text-shadow: none;
-    border: 1.5px solid white;
-}
-
-.fas{
-    font-size: 20px;
-    margin-right: 8%;
-}
-
-.menu > nav ul a li:hover{
-    background-color: #FA7268;
-    color:white;
-    border: .5px solid white;
-    }
-
-.logo {
-    width: 100px;
-    background-color:#84DDFF;
-    border-radius: 100px; 
-    border-top-left-radius: 0;
-    margin: 28%;
-    box-shadow: 1px 1px 10px black;
-}
-
-.logo img{
-    width: 100px;
-}
-
-.feed{
-    margin-left: 20%;
-    width: 80%;
-    background: #84DDFF;
-    background-image: url("../images/nuvem.png");
-    background-size: 5%;
-    background-position-y: -12px;
-    background-position-x: 35px;
-    padding-top: 2%;
-    padding-bottom: 5%;
-}
-
-.texting{
-    width: 50%;
-    height: 30%;
-    border: 1px solid rgba(0, 0, 0, 0.16);
-    margin-left: 25%;
-    background-color: white;
-    border: 1px solid black;
-}
-
-.botaoSend{
-    bottom: 5px;
-    right: 5%;
-    padding: 9px 12px;;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #73dd69;
-    float: right;
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    border: none!important;
-}
-.botaoSend:hover{
-    background-color: #FA7268;
-    color: black
-}
-
-.edit{
-    width: 100%;
-    height: 15%;
-    background-color: grey;
-}
-
-.text{
-    position: relative;
-    width: 100%;
-    height: 85%;
-}
-
-.text textarea{
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 2%;
-    height: 100px;
-}
-
-.tweet{
-    position: relative;
-    overflow: hidden;
-    background-color: white;
-    margin-top: 5%;
-    width: 50%;
-    height: 170px;
-    border: 1px solid rgba(0, 0, 0, 0.9);
-    margin-left: 25%;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.16)
-}
-
-.tweetPt1{
-    width: 100%;
-    display: inline-block;
-}
-
-.tweetFoto{
-    display: inline-block;
-    width: 70px;
-    height: 70px;
-    background-color: white;
-    margin-left: 2%;
-    margin-top: 3%;
-    border-radius: 100px;
-    margin-bottom: 6%;
-}
-
-.tweetFoto img{
-    margin-top: 2%;
-    width:100%;
-}
-
-.tweetMsg{
-    display: inline-block;
-    margin-left: 2%;
-    position: absolute;
-    margin-top: 2%;
-    width: 80%;
-    height: 100px;
-}
-
-.tweetPt2{
-    position: absolute;
-    background-color: #84DDFF;
-    width: 100%;
-    height: 45px;
-    padding-top: 2%;
-}
-
-.tweetPt2 img{
-    margin-right: 3%;
-    cursor: pointer;
-    width: 5%;
-    margin-left: 2%;
-}
-
-#reply{
-    margin-left: 80%;
-}
-
-/******************************************************************************************************************/
-
-/* 6 - PERFIL */
-
-.perfil{
-    width: 200px;
-    height: 120px;
-    background-image: url("../images/placa.png");
-    background-repeat: no-repeat;
-    background-position-x: 22px;
-    background-size: 90%;
-    margin-left: 40%!important;
-    border-radius: 20px;
-}
-
-.perfil h2{
-    font-family: 'Quicksand', sans-serif;
-    padding-top: 22%;
-    margin-left: 25%;
-}
-
-/******************************************************************************************************************/
-
-/* 7 - CONTA  */
-.conta{
-    margin-left: 20%;
-    width: 80%;
-    height: 100%;   
-    background-color: #84DDFF;
-    padding-top: 2%;
-}
-
-.fundoConta{
-    background-color: white;
-    width: 70%;
-    margin-left: 15%;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.16);
-
-}
-
-.conta h2{
-    font-size: 28px;
-    padding-top: 2%;
-    font-family: 'Quicksand', sans-serif;
-    margin-left: 3%;
-}
-.conta p{
-    margin-top: 2%;
-    font-family: 'Quicksand', sans-serif;
-    margin-left: 10%;
-}
-
-#alteraCadastro {
-    margin-top: 1%;
-    margin-bottom: 0%;
-}
-
-#alteraCadastro p{
-    margin-left:0;
-}
-
-/******************************************************************************************************************/
