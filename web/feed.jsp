@@ -3,17 +3,17 @@
 <%@page import="br.uff.twitter.model.UsuarioDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.uff.twitter.model.Usuario"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>  
+<%@page contentType="text/html" pageEncoding="iso-8859-1"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
     ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>)request.getAttribute("publicacoes");
-    // A lista de usu√°rios √© colocada no contexto da p√°gina. Assim o JSTL ter√° acesso a ela
+    // A lista de usu·rios È colocada no contexto da p·gina. Assim o JSTL ter· acesso a ela
     pageContext.setAttribute("listaPublicacoes", listaPublicacoes);
 %>
 <html lang="pt-br">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 	<title>Feed - Twitter</title>
     <link href="css/style2.css" rel="stylesheet"/>
@@ -29,7 +29,7 @@
     <div class="menu">
         <div class="menuFoto"><img src="images/user04.png"/></div>
         <div class="menuName"> 
-            <p>Ol√°,</p>
+            <p>Ol·,</p>
             <h3>
                 <c:if test="${usuarioLogado != null}">
                     <h2>${usuarioLogado.apelido}</h2>
@@ -49,10 +49,10 @@
     <div class="feed">
         <!-- Parte para usuario logado escrever postagem -->
         <div class="texting">
-           <!-- <h3>No que est√° pensando?</h3> -->
+           <!-- <h3>No que est· pensando?</h3> -->
             <div class="text">
                 <form action="/twitter/PublicacaoServlet?operacao=0" method="post">
-                    <textarea placeholder="No que est√° pensando?" name="texto" maxlength="149"></textarea>
+                    <textarea placeholder="No que est· pensando?" name="texto" maxlength="149"></textarea>
                     <input type="hidden" name="idUsuario" value="${usuarioLogado}"/>
                     <div class="clearfix"></div>
                     <button class="botaoSend">
@@ -89,14 +89,14 @@
                         <div class="divisoriaVerde"></div>
                         <div class="tweetpt2">
                             <div class="comentarios">
-                                <h2> Coment√°rios </h2>
+                                <h2> Coment·rios </h2>
                                 <c:if test="${p.listaComentarios != null}" >
                                     <div class="comentario-section">
                                         <c:forEach var="c" items="${p.listaComentarios}">
                                             <p>
                                                     <jsp:setProperty name="dateObject" property="time" value="${c.dataComentario}" />
-                                                    ${c.texto} - ${c.autor.nomeCompleto} √†s 
-                                                    <fmt:formatDate value="${dateObject }" pattern="dd/MM/yyyy kk:mm" />
+                                                    ${c.texto} - ${c.autor.nomeCompleto} ‡s
+                                                    <fmt:formatDate value="${dateObject}" pattern="dd/MM/yyyy kk:mm" />
                                                     <br/>
                                             </p>
                                          </c:forEach>

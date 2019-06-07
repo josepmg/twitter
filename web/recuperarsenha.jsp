@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<meta charset="utf-8"/>
+	<meta charset="iso-8859-1"/>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 	<title>Recuperação de senha - Twitter</title>
     <link href="css/style.css" rel="stylesheet"/>

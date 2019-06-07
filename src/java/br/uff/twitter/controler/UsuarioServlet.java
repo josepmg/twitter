@@ -31,7 +31,6 @@ public class UsuarioServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
-        response.setContentType("text/html;charset=UTF-8");
         switch(Integer.valueOf(request.getParameter("operacao"))){
             case 0:
                 criaUsuario(request, response);
@@ -85,15 +84,12 @@ public class UsuarioServlet extends HttpServlet {
     private void atualizaUsuario(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException, ParseException{
         if (request.getSession().getAttribute("usuarioLogado") == null){
-           response.sendRedirect("index.jsp");
+           response.sendRedirect("/twitter/index.jsp");
            return;
-       } else{
-        
+       } else{      
             UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = dateFormat.parse(request.getParameter("dataNascimento"));
+            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dataNascimento"));
 
             Usuario usuario = new Usuario(
                     request.getParameter("nomeCompleto"),
@@ -101,13 +97,13 @@ public class UsuarioServlet extends HttpServlet {
                     request.getParameter("apelido"), 
                     request.getParameter("email"), 
                     request.getParameter("senha"));
-            usuario.setIdUsuario(Integer.valueOf(request.getParameter("idUsuario")));
+            usuario.setIdUsuario(Integer.valueOf(request.getParameter("idUsuario")));            
 
             // Chama método para cadastrar usuário
             usuarioDAO.altera(usuario);
 
             request.getSession().setAttribute("usuarioLogado", usuario);
-            response.sendRedirect("feed.jsp");
+            response.sendRedirect("/twitter/PublicacaoServlet?operacao=4");
         }
     }   
     
@@ -122,7 +118,7 @@ public class UsuarioServlet extends HttpServlet {
         // Chama método para cadastrar usuário
         usuarioDAO.alteraSenha(usuario);
 
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("/twitter/index.jsp");
     }
     
     private void fazLogin(HttpServletRequest request, HttpServletResponse response)
@@ -139,23 +135,23 @@ public class UsuarioServlet extends HttpServlet {
             // Redireciona
             getServletConfig().getServletContext().getRequestDispatcher("/PublicacaoServlet?operacao=4").forward(request, response);
         } else{
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("/twitter/index.jsp");
         }
     }
     
     private void fazLogout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         request.getSession().invalidate();
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("/twitter/index.jsp");
     }
     
     private void trocaTela(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException{
         if (request.getSession().getAttribute("usuarioLogado") == null){
-           response.sendRedirect("index.jsp");
+           response.sendRedirect("/twitter/index.jsp");
            return;
        } else{
-            response.sendRedirect("conta.jsp");
+            response.sendRedirect("/twitter/conta.jsp");
         }
     }
 

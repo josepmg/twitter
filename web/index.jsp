@@ -1,9 +1,9 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="iso-8859-1"%>
 <html lang="pt-br">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-	<title>Início - Twitter</title>
+	<title>In�cio - Twitter</title>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <link href="css/responsive.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
@@ -12,13 +12,13 @@
 </head>
 <body>
 
-    <!-- inÃ­cio do conteÃºdo da pÃ¡gina - login -->
+    <!-- início do conteúdo da página - login -->
     <div id="principal">
         <!-- imagem do logo-->
         <div class="image-logo">
                 <img src="images/monitor-window.png"/>
             </div>
-            <!-- formulário -->
+            <!-- formul�rio -->
             <div class="form">
                 <form action="/twitter/UsuarioServlet?operacao=5" method="POST">
                     <input name="email" type="email" required placeholder="E-mail" id="user">
@@ -26,7 +26,7 @@
                     <a href="recuperarsenha.jsp" class="forgotPass">Esqueci minha senha</a>
                     <button input type="submit">Entrar</button>
                     <div class="register">
-                        <p>Não possui conta? <a href="cadastro.jsp">Cadastre-se</a></p>
+                        <p>N�o possui conta? <a href="cadastro.jsp">Cadastre-se</a></p>
                     </div>
                 </form>
 

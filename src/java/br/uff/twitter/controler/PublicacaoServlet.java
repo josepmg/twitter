@@ -66,7 +66,7 @@ public class PublicacaoServlet extends HttpServlet {
     private void listaPublicacaoUsuario(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
        if (request.getSession().getAttribute("usuarioLogado") == null){
-           response.sendRedirect("index.jsp");
+           response.sendRedirect("/twitter/index.jsp");
            return;
        } else{
             // Adiciona o usuário
@@ -93,7 +93,7 @@ public class PublicacaoServlet extends HttpServlet {
     private void listaTodasPublicacoes(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException{
          if (request.getSession().getAttribute("usuarioLogado") == null){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/twitter/index.jsp");
             return;
         } else{
             ArrayList<Publicacao> listaPublicacoes = (ArrayList<Publicacao>)(new PublicacaoDAO()).listaTodos();
@@ -115,7 +115,7 @@ public class PublicacaoServlet extends HttpServlet {
     private void removePublicacao(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         if (request.getSession().getAttribute("usuarioLogado") == null){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/twitter/index.jsp");
             return;
         } else{
             // Cria um objeto de acesso ao BD
@@ -137,10 +137,11 @@ public class PublicacaoServlet extends HttpServlet {
             throws ServletException, IOException {
             
         if (request.getSession().getAttribute("usuarioLogado") == null){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/twitter/index.jsp");
             return;
         } else{
             Usuario usuarioLogado = (new UsuarioDAO()).buscaPorEmail(((Usuario) request.getSession().getAttribute("usuarioLogado")).getEmail());
+            
             // Cria um novo usuário com os dados dos Form
             Publicacao publicacao = new Publicacao(
                     request.getParameter("texto"), 
@@ -153,22 +154,14 @@ public class PublicacaoServlet extends HttpServlet {
             publicacaoDAO.adiciona(publicacao);
             
             request.getSession().setAttribute("usuarioLogado", usuarioLogado);
-            listaPublicacaoUsuario(request,response);
-//            try {
-//                publicacaoDAO.fechaConexao();
-//    //            request.setAttribute("usuario", String.valueOf((publicacao.getAutor()).getIdUsuario()));
-//                request.getSession().setAttribute("usuarioLogado", usuarioLogado);
-//                listaPublicacao(request,response);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            listaTodasPublicacoes(request,response);
         }
     }
     
     private void criaComentario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
         if (request.getSession().getAttribute("usuarioLogado") == null){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/twitter/index.jsp");
             return;
         }else{
             // Instancia um novo comentario
