@@ -217,7 +217,6 @@ public class UsuarioDAO {
                     + "WHERE idUsuario = ?");
             stmt.setString(1, u.getSenha());
             stmt.setInt(2, (u.getIdUsuario()));
-            System.out.println(stmt.toString());
             stmt.execute();
             stmt.close();
             fechaConexao();
