@@ -23,7 +23,7 @@
                 <h1>RECUPERAR SENHA</h1>
                 <p>Digite os dados solicitados abaixo para recuperar sua senha!</p>
                 <br>
-                <form action="/twitter/UsuarioServlet?operacao=7" method="POST">
+                <form action="/twitter/usuarioServlet?acao=alteraSenha" method="POST">
                         <div class="pt1Rec">
                             <p>E-mail:</p>
                             <input type="email" name="email" required>
@@ -32,7 +32,7 @@
                             <p>Confirme a senha:</p>
                             <input type="password" name="confirmasenha" required>
                                 <a href="index.jsp"><input id="cancelarRec" type="button" name="cancelar" value="Cancelar"></a>
-                                <a href="#"><input id="cadastrarRec" type="submit" name="enviar" value="Recuperar"></a>
+                                <input id="cadastrarRec" type="submit" name="enviar" value="Recuperar">
                         </div>
                 </form>
 

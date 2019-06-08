@@ -31,30 +31,30 @@ public class UsuarioServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
-        switch(Integer.valueOf(request.getParameter("operacao"))){
-            case 0:
+        switch(request.getParameter("acao")){
+//            case 0:
+            case "criaUsuario":
                 criaUsuario(request, response);
                 break;
-            case 1:
-//                listaUsuarios(request,response);
-                break;
-            case 2:
+//            case 2:
+            case "atualizaUsuario":
                 atualizaUsuario(request, response);
 //                listaUsuarios(request, response);
                 break;
-            case 3:
+//            case 3:
+            case "trocaTela":
                 trocaTela(request, response);
                 break;
-            case 4:
-//                buscaUmUsuario(request, response);
-                break;
-            case 5:
+//            case 5:
+            case "fazLogin":
                 fazLogin(request, response);
                 break;
-            case 6:
+//            case 6:
+            case "fazLogout":
                 fazLogout(request, response);
                 break;
-            case 7:
+//            case 7:
+            case "alteraSenha":
                 alteraSenha(request, response);
                 break;
             default:
@@ -63,11 +63,12 @@ public class UsuarioServlet extends HttpServlet {
     }
     
     private void criaUsuario(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException{
+            throws ServletException, IOException, ParseException{
+        
+        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dataNascimento"));
         // Cria um novo usuário com os dados dos Form
         Usuario usuario = new Usuario(request.getParameter("nomeCompleto"),
-//                Long.parseLong(request.getParameter("dataNascimento")),
-                00000,
+                date.getTime(),
                 request.getParameter("apelido"), 
                 request.getParameter("email"), 
                 request.getParameter("senha"));
@@ -77,8 +78,8 @@ public class UsuarioServlet extends HttpServlet {
         // Chama método para cadastrar usuário
         usuarioDAO.adiciona(usuario);
 
-        request.getSession().setAttribute("usuarioLogado", usuario);
-        getServletConfig().getServletContext().getRequestDispatcher("/feed.jsp").forward(request, response);
+        request.getSession().setAttribute("usuarioLogado", (new UsuarioDAO()).buscaPorEmail(usuario.getEmail()));
+        getServletConfig().getServletContext().getRequestDispatcher("/publicacaoServlet?acao=listaTodasPublicacoes").forward(request, response);
     }
     
     private void atualizaUsuario(HttpServletRequest request, HttpServletResponse response) 
@@ -103,22 +104,25 @@ public class UsuarioServlet extends HttpServlet {
             usuarioDAO.altera(usuario);
 
             request.getSession().setAttribute("usuarioLogado", usuario);
-            response.sendRedirect("/twitter/PublicacaoServlet?operacao=4");
+            response.sendRedirect("/twitter/publicacaoServlet?acao=listaTodasPublicacoes");
         }
     }   
     
     private void alteraSenha(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         // Recupera o usuario da session http
-        Usuario usuario = usuarioDAO.buscaPorEmail(request.getParameter("email"));
+        Usuario usuario = (new UsuarioDAO()).buscaPorEmail(request.getParameter("email"));
         usuario.setSenha(request.getParameter("senha"));
         
-        // Chama método para cadastrar usuário
-        usuarioDAO.alteraSenha(usuario);
+        if(request.getParameter("senha").equals(request.getParameter("confirmasenha"))){
+            // Chama método para cadastrar usuário
+            (new UsuarioDAO()).alteraSenha(usuario);
 
-        response.sendRedirect("/twitter/index.jsp");
+            response.sendRedirect("/twitter/index.jsp");
+        } else{
+            response.sendRedirect("/twitter/recuperarsenha.jsp");
+        }
     }
     
     private void fazLogin(HttpServletRequest request, HttpServletResponse response)
@@ -133,7 +137,7 @@ public class UsuarioServlet extends HttpServlet {
             // Salva na session
             httpSession.setAttribute("usuarioLogado", usuario);
             // Redireciona
-            getServletConfig().getServletContext().getRequestDispatcher("/PublicacaoServlet?operacao=4").forward(request, response);
+            getServletConfig().getServletContext().getRequestDispatcher("/publicacaoServlet?acao=listaTodasPublicacoes").forward(request, response);
         } else{
             response.sendRedirect("/twitter/index.jsp");
         }

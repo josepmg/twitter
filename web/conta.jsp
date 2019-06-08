@@ -45,10 +45,10 @@
             <div class="linha"></div>
             <nav style="clear:both">
                 <ul>
-                    <a href="/twitter/PublicacaoServlet?operacao=4"><li id="not-selected"><i class="fas fa-home"></i>FEED</li></a>
-                    <a href="/twitter/PublicacaoServlet?operacao=1"><li id="not-selected"><i class="fas fa-user"></i>PERFIL</li></a>
-                    <a href="/twitter/UsuarioServlet?operacao=3"><li id="conta"><i class="fas fa-cog"></i>CONTA</li></a>
-                    <a href="/twitter/UsuarioServlet?operacao=6"><li id="not-selected"><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
+                    <a href="/twitter/publicacaoServlet?acao=listaTodasPublicacoes"><li id="not-selected"><i class="fas fa-home"></i>FEED</li></a>
+                    <a href="/twitter/publicacaoServlet?acao=listaPublicacaoUsuario"><li id="not-selected"><i class="fas fa-user"></i>PERFIL</li></a>
+                    <a href="/twitter/usuarioServlet?acao=trocaTela"><li id="conta"><i class="fas fa-cog"></i>CONTA</li></a>
+                    <a href="/twitter/usuarioServlet?acao=fazLogout"><li id="not-selected"><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
                 </ul>
             </nav>
         </div>
@@ -56,7 +56,7 @@
 
             <div id="alteraCadastro" class="formCad">
                 <h2>Configurações de conta:</h2>
-                <form action="/twitter/UsuarioServlet?operacao=2" method="post">
+                <form action="/twitter/usuarioServlet?acao=atualizaUsuario" method="post">
                     <input type="hidden" name="idUsuario" value="${usuarioLogado.idUsuario}"/>
                     <div class="pt1">
                         <p>Nome:</p>

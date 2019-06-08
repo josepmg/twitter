@@ -41,10 +41,9 @@ public class PublicacaoDAO {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1, p.getTexto());
             stmt.setInt(2, (p.getAutor()).getIdUsuario());
-            // Cria um formato para data
             stmt.setLong(3, p.getDataPublicacao());
 
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
             
             fechaConexao();

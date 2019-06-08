@@ -20,7 +20,7 @@
             </div>
             <!-- formulário -->
             <div class="form">
-                <form action="/twitter/UsuarioServlet?operacao=5" method="POST">
+                <form action="/twitter/usuarioServlet?acao=fazLogin" method="POST">
                     <input name="email" type="email" required placeholder="E-mail" id="user">
                     <input name="senha" type="password" required placeholder="Senha" id="password">
                     <a href="recuperarsenha.jsp" class="forgotPass">Esqueci minha senha</a>

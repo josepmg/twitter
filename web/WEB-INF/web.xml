@@ -18,11 +18,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UsuarioServlet</servlet-name>
-        <url-pattern>/UsuarioServlet</url-pattern>
+        <url-pattern>/usuarioServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PublicacaoServlet</servlet-name>
-        <url-pattern>/PublicacaoServlet</url-pattern>
+        <url-pattern>/publicacaoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

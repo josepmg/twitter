@@ -31,9 +31,9 @@
             <!-- formulário -->
             <div class="formCad">
                 <h1>CADASTRE-SE</h1>
-                <p>Digite seus dados para se cadastrar no (nomedoSite)</p>
+                <p>Digite seus dados para cadastrar-se</p>
                 <br>
-                    <form action="/twitter/UsuarioServlet?operacao=0" method="post">
+                    <form action="/twitter/usuarioServlet?acao=criaUsuario" method="post">
                         <div class="pt1">
                             <p>Nome completo:</p>
                             <input id="nome" name="nomeCompleto" type="text" required>

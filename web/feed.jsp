@@ -39,10 +39,10 @@
         <div class="linha"></div>
         <nav style="clear:both">
             <ul>
-                <a href="/twitter/PublicacaoServlet?operacao=4"><li id="feed"><i class="fas fa-home"></i>FEED</li></a>
-                <a href="/twitter/PublicacaoServlet?operacao=1"><li id="not-selected"><i class="fas fa-user"></i>PERFIL</li></a>
-                <a href="/twitter/UsuarioServlet?operacao=3"><li id="not-selected"><i class="fas fa-cog"></i>CONTA</li></a>
-                <a href="/twitter/UsuarioServlet?operacao=6"><li id="not-selected"><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
+                <a href="/twitter/publicacaoServlet?acao=listaTodasPublicacoes"><li id="feed"><i class="fas fa-home"></i>FEED</li></a>
+                <a href="/twitter/publicacaoServlet?acao=listaPublicacaoUsuario"><li id="not-selected"><i class="fas fa-user"></i>PERFIL</li></a>
+                <a href="/twitter/usuarioServlet?acao=trocaTela"><li id="not-selected"><i class="fas fa-cog"></i>CONTA</li></a>
+                <a href="/twitter/usuarioServlet?acao=fazLogout"><li id="not-selected"><i class="fas fa-sign-out-alt"></i>SAIR</li></a>
             </ul>
         </nav>
     </div>
@@ -51,7 +51,7 @@
         <div class="texting">
            <!-- <h3>No que está pensando?</h3> -->
             <div class="text">
-                <form action="/twitter/PublicacaoServlet?operacao=0" method="post">
+                <form action="/twitter/publicacaoServlet?acao=criaPublicacao" method="post">
                     <textarea placeholder="No que está pensando?" name="texto" maxlength="149"></textarea>
                     <input type="hidden" name="idUsuario" value="${usuarioLogado}"/>
                     <div class="clearfix"></div>
@@ -78,7 +78,7 @@
                     </div>
                       <!--  <div class="divisoriaCinza"></div>-->
                         <div class="comentar">
-                            <form action="/twitter/PublicacaoServlet?operacao=3" method="post">
+                            <form action="/twitter/publicacaoServlet?acao=criaComentario" method="post">
                                 <input type="text" maxlength="150" name="textoComentario"/></textarea>
                                 <input type="hidden" name="idPublicacao" value="${p.idPublicacao}"/> 
                                 <input type="hidden" name="idUsuario" value="${usuarioLogado.idUsuario}"/>

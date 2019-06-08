@@ -11,7 +11,6 @@ public class Comentario {
     private String texto;
     private long dataComentario;
     private Usuario autor;
-//    private int publicacao;
 
     public Comentario() {
     }
@@ -20,7 +19,6 @@ public class Comentario {
         this.texto = texto;
         this.dataComentario = dataComentario;
         this.autor = autor;
-//        this.publicacao = publicacao;
     }
     
     public Comentario(int idComentario, String texto, long dataComentario , Usuario autor /*, int publicacao*/) {
@@ -28,7 +26,6 @@ public class Comentario {
         this.texto = texto;
         this.dataComentario = dataComentario;
         this.autor = autor;
-//        this.publicacao = publicacao;
     }
 
     public int getIdComentario() {
@@ -61,15 +58,5 @@ public class Comentario {
 
     public void setAutor(Usuario autor) {
         this.autor = autor;
-    }
-
-//    public int getPublicacao() {
-//        return publicacao;
-//    }
-//
-//    public void setPublicacao(int publicacao) {
-//        this.publicacao = publicacao;
-//    }
-    
-    
+    }   
 }

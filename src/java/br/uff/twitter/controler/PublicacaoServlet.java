@@ -12,12 +12,9 @@ import br.uff.twitter.model.PublicacaoDAO;
 import br.uff.twitter.model.Usuario;
 import br.uff.twitter.model.UsuarioDAO;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,21 +38,26 @@ public class PublicacaoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        switch(Integer.valueOf(request.getParameter("operacao"))){
-            case 0:
+        switch(request.getParameter("acao")){
+//            case 0:
+            case "criaPublicacao":
                 criaPublicacao(request, response);
                 break;
-            case 1:
+//            case 1:
+            case "listaPublicacaoUsuario":
                 listaPublicacaoUsuario(request,response);
                 break;
-            case 2:
+//            case 2:
+            case "removePublicacao":
                 removePublicacao(request, response);
                 listaPublicacaoUsuario(request, response);
                 break;
-            case 3:
+//            case 3:
+            case "criaComentario":
                 criaComentario(request, response);
                 break;
-            case 4:
+//            case 4:
+            case "listaTodasPublicacoes":
                 listaTodasPublicacoes(request, response);
                 break;
             default:
@@ -78,7 +80,6 @@ public class PublicacaoServlet extends HttpServlet {
 
             // Para cada publicação, recuperará seus comentários
             for (Publicacao p : publicacaoList){
-                System.out.println("p.id: " + p.getIdPublicacao());
                 p.setListaComentarios((new ComentarioDAO()).listaPorPublicacao(p.getIdPublicacao()));
             }
 
@@ -124,28 +125,22 @@ public class PublicacaoServlet extends HttpServlet {
             publicacaoDAO.remove(Integer.valueOf(request.getParameter("idPublicacao")));
 
             listaPublicacaoUsuario(request,response);
-//            try {
-//                publicacaoDAO.fechaConexao();
-//                listaPublicacao(request,response);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(UsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-//            }
         }
     }
 
     private void criaPublicacao(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-            
+            throws ServletException, IOException {   
         if (request.getSession().getAttribute("usuarioLogado") == null){
             response.sendRedirect("/twitter/index.jsp");
             return;
         } else{
-            Usuario usuarioLogado = (new UsuarioDAO()).buscaPorEmail(((Usuario) request.getSession().getAttribute("usuarioLogado")).getEmail());
+//            Usuario usuarioLogado = (new UsuarioDAO()).buscaPorEmail(((Usuario) request.getSession().getAttribute("usuarioLogado")).getEmail());
+            Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
             
             // Cria um novo usuário com os dados dos Form
             Publicacao publicacao = new Publicacao(
                     request.getParameter("texto"), 
-                    (new UsuarioDAO()).buscaPorEmail(usuarioLogado.getEmail()),
+                    usuarioLogado,
                     ((new Date()).getTime()));
 
             // Cria um objeto de acesso ao BD
@@ -180,12 +175,6 @@ public class PublicacaoServlet extends HttpServlet {
             comentarioDAO.adiciona(comentario, publicacao);
             
             listaPublicacaoUsuario(request,response);
-//            try {
-//                comentarioDAO.fechaConexao();
-//                listaPublicacao(request,response);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(PublicacaoServlet.class.getName()).log(Level.SEVERE, null, ex);
-//            }
         }
         
     }
