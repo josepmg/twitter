@@ -51,6 +51,20 @@
                             <p>Confirmação de senha:</p>
                             <input id="senha-conf"  name="confSenha" type="password"  required>
                         </div>
+                        
+                        <div class="escolheImagem">
+                            <p>Escolha sua imagem de perfil:</p>
+                            <table>
+                                    <tr>
+                                        <input type="radio" name="imagePath" value="images/user01.png" required><img src="images/user01.png"  class="imagemUsuario"/>
+                                        <input type="radio" name="imagePath" value="images/user02.png" required><img src="images/user02.png"  class="imagemUsuario"/>
+                                    </tr>
+                                    <tr>
+                                        <input type="radio" name="imagePath" value="images/user03.png" required><img src="images/user03.png"  class="imagemUsuario"/>
+                                        <input type="radio" name="imagePath" value="images/user04.png" required><img src="images/user04.png"  class="imagemUsuario"/>
+                                    </tr>
+                                </table>
+                        </div>
                           <a href="index.jsp"><input id="cancelar" type="button" name="cancelar" value="Cancelar"></a>
                           <input id="cadastrar" type="submit" name="enviar" value="Cadastrar">
                 </form>

@@ -27,7 +27,7 @@
 <body>
     <!-- menu principal feed  -->
     <div class="menu">
-        <div class="menuFoto"><img src="images/user04.png"/></div>
+        <div class="menuFoto"><img src="${usuarioLogado.imagePath}"/></div>
         <div class="menuName"> 
             <p>Olá,</p>
             <h3>
@@ -70,7 +70,7 @@
                 <div class="tweet"  style="clear:both">
                     <div class="tweetPt1"  style="clear:both">
                         <div class="clearfix"></div>
-                        <div class="tweetFoto"  style="clear:both"><img src="images/user02.png"/></div>
+                        <div class="tweetFoto"  style="clear:both"><img src="${p.autor.imagePath}"/></div>
                         <div class="tweetMsg"  style="clear:both">
                             <h2>${p.autor.apelido}</h2>
                             <p> ${p.texto}</p>

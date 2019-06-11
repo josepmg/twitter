@@ -13,25 +13,28 @@ public class Usuario {
     private String apelido;
     private String email;
     private String senha;
+    private String imagePath;
 
     public Usuario() {
     }
 
-    public Usuario(String nomeCompleto, long dataNascimento, String apelido, String email, String senha) {
+    public Usuario(String nomeCompleto, long dataNascimento, String apelido, String email, String senha, String imagePath) {
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.apelido = apelido;
         this.email = email;
         this.senha = senha;
+        this.imagePath = imagePath;
     } 
     
-    public Usuario(int idUsuario, String nomeCompleto, long dataNascimento, String apelido, String email, String senha) {
+    public Usuario(int idUsuario, String nomeCompleto, long dataNascimento, String apelido, String email, String senha, String imagePath) {
         this.idUsuario = idUsuario;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.apelido = apelido;
         this.email = email;
         this.senha = senha;
+        this.imagePath = imagePath;
     }
 
     public int getIdUsuario() {
@@ -80,6 +83,14 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+     public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
     
 }

@@ -71,7 +71,8 @@ public class UsuarioServlet extends HttpServlet {
                 date.getTime(),
                 request.getParameter("apelido"), 
                 request.getParameter("email"), 
-                request.getParameter("senha"));
+                request.getParameter("senha"),
+                request.getParameter("imagePath"));
 
         // Cria um objeto de acesso ao BD
         UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -97,7 +98,8 @@ public class UsuarioServlet extends HttpServlet {
                     date.getTime(),
                     request.getParameter("apelido"), 
                     request.getParameter("email"), 
-                    request.getParameter("senha"));
+                    request.getParameter("senha"),
+                    request.getParameter("imagePath"));
             usuario.setIdUsuario(Integer.valueOf(request.getParameter("idUsuario")));            
 
             // Chama método para cadastrar usuário
@@ -158,6 +160,8 @@ public class UsuarioServlet extends HttpServlet {
             response.sendRedirect("/twitter/conta.jsp");
         }
     }
+    
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

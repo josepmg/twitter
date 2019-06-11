@@ -33,7 +33,7 @@
 
     <!-- menu principal feed  -->
     <div class="menu">
-        <div class="menuFoto"><img src="images/user.png"/></div>
+        <div class="menuFoto"><img src="${usuarioLogado.imagePath}"/></div>
         <div class="menuName"> 
             <p>Olá,</p>
             <h3>

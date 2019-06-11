@@ -33,8 +33,8 @@ public class UsuarioDAO {
     
     public void adiciona(Usuario u){     
         String sql = "INSERT INTO usuario "
-                + "(nomeCompleto, dataNascimento, apelido, email, senha) "
-                + "values (?, ?, ?, ?, ?)";
+                + "(nomeCompleto, dataNascimento, apelido, email, senha, imagePath) "
+                + "values (?, ?, ?, ?, ?, ?)";
         
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -43,6 +43,7 @@ public class UsuarioDAO {
             stmt.setString(3, u.getApelido());
             stmt.setString(4, u.getEmail());
             stmt.setString(5, u.getSenha());
+            stmt.setString(6, u.getImagePath());
 
             stmt.execute();
             stmt.close();
@@ -69,7 +70,8 @@ public class UsuarioDAO {
                         rs.getLong("dataNascimento"), 
                         rs.getString("apelido"), 
                         rs.getString("email"), 
-                        rs.getString("senha")));                
+                        rs.getString("senha"),
+                        rs.getString("imagePath")));                
             }
             // Encerra o ResultSet
             rs.close();
@@ -102,7 +104,8 @@ public class UsuarioDAO {
                         rs.getLong("dataNascimento"), 
                         rs.getString("apelido"), 
                         rs.getString("email"), 
-                        rs.getString("senha"));
+                        rs.getString("senha"),
+                        rs.getString("imagePath"));
             }
             // Encerra o ResultSet
             rs.close();
@@ -135,7 +138,8 @@ public class UsuarioDAO {
                         rs.getLong("dataNascimento"), 
                         rs.getString("apelido"), 
                         rs.getString("email"), 
-                        rs.getString("senha"));
+                        rs.getString("senha"),
+                        rs.getString("imagePath"));
             }
             // Encerra o ResultSet
             rs.close();
@@ -171,7 +175,8 @@ public class UsuarioDAO {
                         rs.getLong("dataNascimento"), 
                         rs.getString("apelido"), 
                         rs.getString("email"), 
-                        rs.getString("senha"));
+                        rs.getString("senha"),
+                        rs.getString("imagePath"));
             }
             // Encerra o ResultSet
             rs.close();
@@ -193,14 +198,17 @@ public class UsuarioDAO {
                     + "dataNascimento = ?, "
                     + "apelido = ?, "
                     + "email = ?, "
-                    + "senha = ? "
+                    + "senha = ?, "
+                    + "imagePath = ? "
                     + "WHERE idUsuario = ?");
             stmt.setString(1, u.getNomeCompleto());
             stmt.setLong(2, u.getDataNascimento());
             stmt.setString(3, u.getApelido());
             stmt.setString(4, u.getEmail());
             stmt.setString(5, u.getSenha());
-            stmt.setString(6, String.valueOf(u.getIdUsuario()));
+            stmt.setString(6, u.getImagePath());
+            System.out.println("ImagePath: " + u.getImagePath());
+            stmt.setInt(7, u.getIdUsuario());
             System.out.println(stmt.toString());
             stmt.execute();
             stmt.close();
