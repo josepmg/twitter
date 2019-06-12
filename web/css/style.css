@@ -56,8 +56,9 @@ a {
 }
 
 .image-logo img{
-    margin: 0 auto;
-    width: 106px;
+    max-width: 120px;
+    margin: auto;
+    background: #84DDFF;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
     -webkit-border-radius: 100px;
     -webkit-border-top-left-radius: 0;
