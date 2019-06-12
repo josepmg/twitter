@@ -22,6 +22,7 @@ public class PublicacaoDAO {
     
     private Connection conn;
 
+    
     public PublicacaoDAO() {
         this.conn = new FabricaConexoes().getConnection();
     }
@@ -32,7 +33,7 @@ public class PublicacaoDAO {
     
     public void adiciona(Publicacao p){     
         String sql = "INSERT INTO publicacao "
-                + "(texto, autor, dataPublicaco) "
+                + "(texto, autor, dataPublicacao) "
                 + "values (?, ?, ?)";
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -55,7 +56,7 @@ public class PublicacaoDAO {
             List<Publicacao> publicacaoList = new ArrayList<>();
             // Cria o statment que contém a Query de consulta
             PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM publicacao "
-                    + "ORDER BY dataPublicaco DESC "
+                    + "ORDER BY dataPublicacao DESC "
                     + "LIMIT 10");
             // Cria uma varíavel para receber o resultado da Query
             ResultSet rs = stmt.executeQuery();
@@ -66,7 +67,7 @@ public class PublicacaoDAO {
                         rs.getInt("idPublicacao"), 
                         rs.getString("texto"), 
                         (new UsuarioDAO()).busca(rs.getInt("autor")), 
-                        rs.getLong("dataPublicaco")
+                        rs.getLong("dataPublicacao")
                 ));
                
             }
@@ -91,7 +92,7 @@ public class PublicacaoDAO {
             // Cria o statment que contém a Query de consulta
             PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM publicacao "
                     + "WHERE autor = ? "
-                    + "ORDER BY dataPublicaco DESC "
+                    + "ORDER BY dataPublicacao DESC "
                     + "LIMIT 10");
             stmt.setInt(1, autor);
             // Cria uma varíavel para receber o resultado da Query
@@ -103,7 +104,7 @@ public class PublicacaoDAO {
                         rs.getInt("idPublicacao"), 
                         rs.getString("texto"), 
                         (new UsuarioDAO()).busca(rs.getInt("autor")), 
-                        rs.getLong("dataPublicaco"),
+                        rs.getLong("dataPublicacao"),
                         (new ComentarioDAO()).listaPorPublicacao(rs.getInt("idPublicacao"))
                 ));
                
@@ -136,7 +137,7 @@ public class PublicacaoDAO {
                         rs.getInt("idPublicacao"), 
                         rs.getString("texto"), 
                         (new UsuarioDAO()).busca(rs.getInt("autor")), 
-                        rs.getLong("dataPublicaco"));
+                        rs.getLong("dataPublicacao"));
             }
             else{
                 System.out.println("Não há registros para id " + id);
