@@ -9,10 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -131,7 +128,6 @@ public class PublicacaoDAO {
             stmt.setInt(1, id);
             // Cria uma varíavel para receber o resultado da Query
             ResultSet rs = stmt.executeQuery();
-            
             // Cria usuário encontrado
             Publicacao publicacao = null;
             // Verifica se houve algum retorno
@@ -149,7 +145,6 @@ public class PublicacaoDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
-            
             fechaConexao();
             // Retorna a lista de Usuários do BD
             return publicacao;
@@ -160,14 +155,12 @@ public class PublicacaoDAO {
     
     public void remove(int id){
         try {
-            
+            // Remove comentários da publicação
             (new ComentarioDAO()).removePorPublicacao(id);
-            
             PreparedStatement stmt = this.conn.prepareStatement("DELETE FROM publicacao WHERE idPublicacao = ?");
             stmt.setInt(1, id);
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
-            
             fechaConexao();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -180,7 +173,6 @@ public class PublicacaoDAO {
             stmt.setInt(1, idUsuario);
             stmt.execute();
             stmt.close();
-            
             fechaConexao();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);

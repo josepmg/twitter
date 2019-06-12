@@ -25,7 +25,7 @@ and open the template in the editor.
     .pt1 p, .pt2 p{ font-size: 12px; }
     #cancelar { margin-left: 40%; border-radius: 3px; padding: 13px; margin-bottom: 5%;}
     #cadastrar{ border-radius: 3px; padding: 13px; margin-bottom: 5%;}
-}
+};
 
 @media screen and (max-width: 800px) {
     /* 2 - INDEX */
@@ -52,7 +52,7 @@ and open the template in the editor.
     #not-selected, #feed, #perfil, #conta {font-size: 11px;}
     .texting { width: 75%; margin-left: 15%}
     .botaoSend { margin-left: 72%; padding: 10px;}
-    .comentar { margin-left: 10%; }
+    .comentar input[type=submit] { margin-top: 15%; margin-left: 31%;}
     .tweet {width: 70%; margin-left: 15%;}
     /* 6 - PERFIL */
     .perfil {width: 60%; margin-left: 20%;}
@@ -61,10 +61,14 @@ and open the template in the editor.
     #cadastrar{ border-radius: 3px; padding: 13px; margin-bottom: 5%;}
     .pt1, .pt2 { margin-left: 3.5%; }
     .formCad h2{ margin-left: 6%; font-size: 25px;}
-}
+};
 
 @media screen and (max-width: 1024px) {
     /*5 - FEED */
     .menuFoto{ margin-left: 27%;}
     
+};
+
+@media screen and (max-height: 800px) {
+    .feed{ height: auto; }
 };

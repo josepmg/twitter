@@ -6,7 +6,6 @@
 package br.uff.twitter.model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +34,6 @@ public class UsuarioDAO {
         String sql = "INSERT INTO usuario "
                 + "(nomeCompleto, dataNascimento, apelido, email, senha, imagePath) "
                 + "values (?, ?, ?, ?, ?, ?)";
-        
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1, u.getNomeCompleto());
@@ -44,8 +42,7 @@ public class UsuarioDAO {
             stmt.setString(4, u.getEmail());
             stmt.setString(5, u.getSenha());
             stmt.setString(6, u.getImagePath());
-
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
             fechaConexao();
         } catch (SQLException  e) {
@@ -111,7 +108,6 @@ public class UsuarioDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
-            
             fechaConexao();
             // Retorna a lista de Usuários do BD
             return usuario;
@@ -127,7 +123,6 @@ public class UsuarioDAO {
             stmt.setString(1, email);
             // Cria uma varíavel para receber o resultado da Query
             ResultSet rs = stmt.executeQuery();
-            
             // Cria usuário encontrado
             Usuario usuario = null;
             // Verifica se houve algum retorno
@@ -145,7 +140,6 @@ public class UsuarioDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
-            
             fechaConexao();
             // Retorna a lista de Usuários do BD
             return usuario;
@@ -164,7 +158,6 @@ public class UsuarioDAO {
             stmt.setString(2, senha);
             // Cria uma varíavel para receber o resultado da Query
             ResultSet rs = stmt.executeQuery();
-            
             // Cria usuário encontrado
             Usuario usuario = null;
             // Verifica se houve algum retorno
@@ -182,7 +175,6 @@ public class UsuarioDAO {
             rs.close();
             // Encerra o Statment
             stmt.close();
-            
             fechaConexao();
             // Retorna a lista de Usuários do BD
             return usuario;
@@ -210,7 +202,7 @@ public class UsuarioDAO {
             System.out.println("ImagePath: " + u.getImagePath());
             stmt.setInt(7, u.getIdUsuario());
             System.out.println(stmt.toString());
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
             fechaConexao();
         } catch (SQLException ex) {
@@ -225,7 +217,7 @@ public class UsuarioDAO {
                     + "WHERE idUsuario = ?");
             stmt.setString(1, u.getSenha());
             stmt.setInt(2, (u.getIdUsuario()));
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
             fechaConexao();
         } catch (SQLException ex) {
@@ -235,13 +227,9 @@ public class UsuarioDAO {
     
     public void remove(int id){
         try {
-            
-            (new ComentarioDAO()).removePorAutor(id);
-            (new PublicacaoDAO()).removePorAutor(id);
-            
             PreparedStatement stmt = this.conn.prepareStatement("DELETE FROM usuario WHERE idUsuario = ?");
             stmt.setInt(1, id);
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
             fechaConexao();
         } catch (SQLException ex) {
