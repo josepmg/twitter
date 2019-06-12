@@ -6,7 +6,7 @@
 <html lang="pt-br">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
         <title>Conta - Twitter</title>
         <link href="css/style2.css" rel="stylesheet"/>
         <link href="css/responsive.css" rel="stylesheet"/>

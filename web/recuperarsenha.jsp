@@ -31,9 +31,10 @@
                             <input type="password" name="senha" required>
                             <p>Confirme a senha:</p>
                             <input type="password" name="confirmasenha" required>
-                                <a href="index.jsp"><input id="cancelarRec" type="button" name="cancelar" value="Cancelar"></a>
-                                <input id="cadastrarRec" type="submit" name="enviar" value="Recuperar">
-                        </div>
+                         </div>
+                            <a href="index.jsp"><input id="cancelar" type="button" name="cancelar" value="Cancelar"></a>
+                            <input id="cadastrar" type="submit" name="enviar" value="Recuperar">
+                        
                 </form>
 
             </div>

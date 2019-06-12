@@ -13,9 +13,29 @@
     .pt1 p, .pt2 p{ font-size: 12px; }
     #cancelar { margin-left: 40%; border-radius: 3px; padding: 13px; margin-bottom: 5%;}
     #cadastrar{ border-radius: 3px; padding: 13px; margin-bottom: 5%;}
-};
+}
+
+@media screen and (max-width: 1024px) {
+    /* 0 - MENU */
+    .menuFoto{ margin-left: 27%;}
+    /* 3 - CADASTRO */
+    .escolheImagem { max-width: 55%; margin: auto; margin-bottom: 5%; }
+    /*5 - FEED */
+    .texting { width: 53.5%; margin-left: 25%}
+    .comentar input[type=text]  { width: 61%;}
+    .comentar input[type=submit] { margin-top: 0%; }
+    .botaoSend { margin-left: 72%; }
+     /* 7 - CONTA */
+    .escolheImagem { max-width: 70%; margin: auto; margin-bottom: 5%; }
+ }
 
 @media screen and (max-width: 800px) {
+    /* 0 - MENU */
+    .menuFoto {width: 105%; margin-top: 35%; height: 10.5%; margin-left: 30% !important; }
+    .menuName {font-size: 14px; margin-bottom: -35px;}
+    .menuName h2{font-size: 16px;}
+    .fas {font-size: 14px;}
+    #not-selected, #feed, #perfil, #conta {font-size: 11px;}
     /* 2 - INDEX */
     #principal { max-width: 400px;}
     .image-logo {margin: auto; margin-top: 25%; }
@@ -34,11 +54,6 @@
      #cancelarRec {margin-left: 25% !important;}
     /*5 - FEED */
     .feed{ width: auto; height: auto !important; }
-    .menuFoto {width: 45%; margin-top: 35%; height: 10.5%; margin-left: 30% !important; }
-    .menuName {font-size: 14px; margin-bottom: -35px;}
-    .menuName h2{font-size: 16px;}
-    .fas {font-size: 14px;}
-    #not-selected, #feed, #perfil, #conta {font-size: 11px;}
     .texting { width: 75%; margin-left: 15%}
     .botaoSend { margin-left: 72%; padding: 10px;}
     .comentar input[type=submit] { margin-top: 15%; margin-left: 31%;}
@@ -52,18 +67,4 @@
     .formCad h2{ margin-left: 6%; font-size: 25px;}
 };
 
-@media screen and (max-width: 1024px) {
-    /*5 - FEED */
-    .menuFoto{ margin-left: 27%;}
-    
-};
 
-@media screen and (max-height: 800px) {
-    /*5 - FEED */
-    .feed{ height: auto; }
-};
-
-@media screen and (max-width: 1920px) {
-     /*5 - FEED */
-    .menuFoto{ margin-left: 35%;}
-}

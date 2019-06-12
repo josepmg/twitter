@@ -302,13 +302,13 @@ a {
     width: 100px;
 }
 
-.escolheImagem {
+.escolheImagem1 {
     margin: auto;
     max-width: 60%;
     margin-bottom: 5%;
 }
 
-.escolheImagem p{
+.escolheImagem1 p{
     letter-spacing: 0.1px!important;
     padding-left: 0%; 
     color: rgba(0,0,0,0.4);
@@ -354,39 +354,6 @@ a {
     width: 25%;
 }
 
-#cancelarRec{
-    cursor: pointer;
-    font-weight: bold;
-    color: white;
-    background-color: #c9c9c9;
-    border:none;
-    border-radius: 8px;
-    font-size: 15px;
-    padding: 15px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
-}
-
-#cancelarRec:hover{
-    background-color: #a0a0a0;
-    transition: 0.3s;
-}
-
-#cadastrarRec{
-    cursor: pointer;
-    font-weight: bold;
-    color: white;
-    padding: 15px;
-    font-size: 15px;
-    background-color: #84DDFF;
-    border:none;
-    border-radius: 8px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.16);
-} 
-
-#cadastrarRec:hover{
-    background-color:#73dd69;
-    transition: 0.3s;
-}
 
 /******************************************************************************************************************/
 

@@ -52,7 +52,7 @@
                             <input id="senha-conf"  name="confSenha" type="password"  required>
                         </div>
                         
-                        <div class="escolheImagem">
+                        <div class="escolheImagem1">
                             <p>Escolha sua imagem de perfil:</p>
                             <table>
                                     <tr>
