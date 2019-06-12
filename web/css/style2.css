@@ -4,6 +4,11 @@
 }
 
 body{
+    background: #84DDFF;
+    background-image: url("../images/nuvem.png");
+    background-size: 5%;
+    background-position-y: -12px;
+    background-position-x: 35px;
 }
 
 a {
@@ -124,11 +129,6 @@ a {
     padding-left: 20%;
     width: auto;
     height: auto;
-    background: #84DDFF;
-    background-image: url("../images/nuvem.png");
-    background-size: 5%;
-    background-position-y: -12px;
-    background-position-x: 35px;
     padding-top: 2%;
     padding-bottom: 5%;
 }
