@@ -22,11 +22,11 @@
     .escolheImagem { max-width: 55%; margin: auto; margin-bottom: 5%; }
     /*5 - FEED */
     .texting { width: 53.5%; margin-left: 25%}
-    .comentar input[type=text]  { width: 61%;}
+    .comentar input[type=text]  { width: 58%;}
     .comentar input[type=submit] { margin-top: 0%; }
     .botaoSend { margin-left: 72%; }
      /* 7 - CONTA */
-    .escolheImagem { max-width: 70%; margin: auto; margin-bottom: 5%; }
+    .escolheImagem { max-width: 75%; margin: auto; margin-bottom: 5%; }
  }
 
 @media screen and (max-width: 800px) {
